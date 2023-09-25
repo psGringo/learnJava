@@ -25,38 +25,36 @@ public class CaesarShiftImpl implements CaesarShift {
     }
 
     static List<Character> shiftAlphabet(List<Character> alphabet, int shift) {
-        var shiftedAplhabet = new ArrayList<Character>(alphabet);
+        var shiftedAplhabet = new ArrayList<>(alphabet);
         Collections.rotate(shiftedAplhabet, shift);
         return shiftedAplhabet;
     }
 
-    static void getShiftedMaps(HashMap<Character, Character> mapLowerCase, HashMap<Character, Character> mapUpperCase, int shift, EncryptDirection direction) {
+    static void getShiftedMaps(int shift, EncryptDirection direction) {
         var shiftedLowerCase = shiftAlphabet(alphabetLowerCase, shift);
         var shiftedUpperCase = shiftAlphabet(alphabetUpperCase, shift);
-        mapLowerCase.clear();
-        mapUpperCase.clear();
+        CaesarShiftImpl.mapLowerCase.clear();
+        CaesarShiftImpl.mapUpperCase.clear();
 
         for (int i = 0; i < shiftedUpperCase.size(); i++) {
 
             if (direction.equals(EncryptDirection.Encrypt)) {
-                mapLowerCase.put(alphabetLowerCase.get(i), shiftedLowerCase.get(i));
-                mapUpperCase.put(alphabetUpperCase.get(i), shiftedUpperCase.get(i));
+                CaesarShiftImpl.mapLowerCase.put(alphabetLowerCase.get(i), shiftedLowerCase.get(i));
+                CaesarShiftImpl.mapUpperCase.put(alphabetUpperCase.get(i), shiftedUpperCase.get(i));
             } else {
-                mapLowerCase.put(shiftedLowerCase.get(i), alphabetLowerCase.get(i));
-                mapUpperCase.put(shiftedUpperCase.get(i), alphabetUpperCase.get(i));
+                CaesarShiftImpl.mapLowerCase.put(shiftedLowerCase.get(i), alphabetLowerCase.get(i));
+                CaesarShiftImpl.mapUpperCase.put(shiftedUpperCase.get(i), alphabetUpperCase.get(i));
             }
         }
     }
 
     static void Execute(Reader reader, Writer writer) throws IOException {
-        int oneCharInt = 0;
+        int oneCharInt;
         while ((oneCharInt = reader.read()) != -1) {
             char oneChar = (char) oneCharInt;
             if (mapLowerCase.containsKey(oneChar))
                 writer.write(mapLowerCase.get(oneChar));
-            else if (mapUpperCase.containsKey(oneChar))
-                writer.write(mapUpperCase.get(oneChar));
-            else writer.write(oneChar);
+            else writer.write(mapUpperCase.getOrDefault(oneChar, oneChar));
         }
     }
 
@@ -78,7 +76,7 @@ public class CaesarShiftImpl implements CaesarShift {
         Path outputFilePath = Path.of(outputPath + File.separator + outputFile);
 
         try (Reader reader = new FileReader(inputPath.toFile()); Writer writer = new FileWriter(outputFilePath.toFile())) {
-            getShiftedMaps(mapLowerCase, mapUpperCase, shift, direction);
+            getShiftedMaps(shift, direction);
             Execute(reader, writer);
         }
     }
@@ -94,7 +92,7 @@ public class CaesarShiftImpl implements CaesarShift {
     private String ExecuteWord(String word, int shift, EncryptDirection direction) throws IOException {
         String res;
         try (Reader reader = new StringReader(word); Writer writer = new StringWriter()) {
-            getShiftedMaps(mapLowerCase, mapUpperCase, shift, direction);
+            getShiftedMaps(shift, direction);
             Execute(reader, writer);
             res = writer.toString();
         }

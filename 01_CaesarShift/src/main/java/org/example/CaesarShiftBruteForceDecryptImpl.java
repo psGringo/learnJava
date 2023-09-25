@@ -28,8 +28,8 @@ public class CaesarShiftBruteForceDecryptImpl implements CaesarShiftBruteForceDe
 
         for (int i = 0; i < CaesarShiftImpl.alphabetUpperCase.size(); i++) {
             int shift = i;
-            for (int j = 0; j < wordsInFileArray.length; j++) {
-                String decryptedWord = caesarShift.DecryptWord(wordsInFileArray[j], shift);
+            for (String s : wordsInFileArray) {
+                String decryptedWord = caesarShift.DecryptWord(s, shift);
                 if (wordsInDecryptedFile.contains(decryptedWord)) {
                     return shift;
                 }
@@ -46,10 +46,6 @@ public class CaesarShiftBruteForceDecryptImpl implements CaesarShiftBruteForceDe
      * брутфорсим каждое слово
      * если нашли ключ, расшифровываем файл, иначе брутфорсом выдаем все варианты
      *
-     * @param file
-     * @param decryptedExample
-     * @param decryptedFile
-     * @throws IOException
      */
     @Override
     public void Decrypt(String file, String decryptedExample, String decryptedFile) throws IOException {

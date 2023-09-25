@@ -12,7 +12,7 @@ public class CaesarShiftStatisticalDecryptImpl implements CaesarShiftStatistical
         this.caesarShift = caesarShift;
     }
 
-    class WordEntry {
+    static class WordEntry {
         private String key;
         private Integer frequency;
 
@@ -21,21 +21,6 @@ public class CaesarShiftStatisticalDecryptImpl implements CaesarShiftStatistical
             this.frequency = frequency;
         }
 
-        public Integer getValue() {
-            return frequency;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public void setKey(String key) {
-            this.key = key;
-        }
-
-        public void setValue(Integer value) {
-            this.frequency = value;
-        }
     }
 
     private int TryGetShift(HashMap<String, Integer> wordsFrequencyMap, HashSet<String> words) throws IOException {

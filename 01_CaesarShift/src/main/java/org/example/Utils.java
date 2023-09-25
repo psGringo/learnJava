@@ -36,8 +36,7 @@ public class Utils {
 
                 for (String word : line.split(" ")) {
                     if (!word.isEmpty() && isAlphabeticalWord(word)) {
-                        if (!hashSet.contains(word))
-                            hashSet.add(word);
+                        hashSet.add(word);
                     }
                 }
             }
