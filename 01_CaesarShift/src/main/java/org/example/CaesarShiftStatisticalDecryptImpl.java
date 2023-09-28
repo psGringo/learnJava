@@ -52,8 +52,8 @@ public class CaesarShiftStatisticalDecryptImpl implements CaesarShiftStatistical
 
         HashMap<String, Integer> wordsFrequencyMap = new HashMap<>();
         HashSet<String> words = new HashSet<>();
-        Utils.collectWords(decryptedExample, wordsFrequencyMap);
-        Utils.collectWords(file, words);
+        Utils.CollectWords(decryptedExample, wordsFrequencyMap);
+        Utils.CollectWords(file, words);
 
         int shift = TryGetShift(wordsFrequencyMap, words);
         if (shift != -1) {

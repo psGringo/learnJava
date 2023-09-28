@@ -18,8 +18,8 @@ public class CaesarShiftBruteForceDecryptImpl implements CaesarShiftBruteForceDe
 
         HashSet<String> wordsInDecryptedFile = new HashSet<>();
 
-        Utils.collectWords(file, wordsInFile);
-        Utils.collectWords(decryptedExample, wordsInDecryptedFile);
+        Utils.CollectWords(file, wordsInFile);
+        Utils.CollectWords(decryptedExample, wordsInDecryptedFile);
 
         if (wordsInFile.isEmpty() || wordsInDecryptedFile.isEmpty())
             return res;

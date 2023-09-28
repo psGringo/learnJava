@@ -17,22 +17,22 @@ public class CaesarShiftImpl implements CaesarShift {
     public static Path outputPath = Path.of("results");
 
     public CaesarShiftImpl(String outputDir) throws IOException {
-        PrepareOutputPath(outputDir);
+        CreateOutputDir(outputDir);
     }
 
     public CaesarShiftImpl() throws IOException {
-        PrepareOutputPath(outputPath.toString());
+        this(outputPath.toString());
     }
 
-    static List<Character> shiftAlphabet(List<Character> alphabet, int shift) {
+    static List<Character> ShiftAlphabet(List<Character> alphabet, int shift) {
         var shiftedAplhabet = new ArrayList<>(alphabet);
         Collections.rotate(shiftedAplhabet, shift);
         return shiftedAplhabet;
     }
 
-    static void getShiftedMaps(int shift, EncryptDirection direction) {
-        var shiftedLowerCase = shiftAlphabet(alphabetLowerCase, shift);
-        var shiftedUpperCase = shiftAlphabet(alphabetUpperCase, shift);
+    static void GetShiftedMaps(int shift, EncryptDirection direction) {
+        var shiftedLowerCase = ShiftAlphabet(alphabetLowerCase, shift);
+        var shiftedUpperCase = ShiftAlphabet(alphabetUpperCase, shift);
         CaesarShiftImpl.mapLowerCase.clear();
         CaesarShiftImpl.mapUpperCase.clear();
 
@@ -58,25 +58,34 @@ public class CaesarShiftImpl implements CaesarShift {
         }
     }
 
-    public void PrepareOutputPath(String name) throws IOException {
-        outputPath = Path.of(name);
-        File results = new File(outputPath.toAbsolutePath().toUri());
+    private static boolean DeleteDirectory(File directory) {
+        File[] allContents = directory.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                DeleteDirectory(file);
+            }
+        }
+        return directory.delete();
+    }
 
-        for (File file : Objects.requireNonNull(results.listFiles())) {
-            Files.delete(Path.of(file.toURI()));
+    public void CreateOutputDir(String name) throws IOException {
+        outputPath = Path.of(name);
+
+        if (Files.exists(outputPath)) {
+            DeleteDirectory(outputPath.toFile());
         }
 
-        Files.deleteIfExists(outputPath);
         Files.createDirectory(outputPath.toAbsolutePath());
     }
 
     void Execute(String inputFile, String outputFile, int shift, EncryptDirection direction) throws IOException {
 
         Path inputPath = Path.of(inputFile);
+
         Path outputFilePath = Path.of(outputPath + File.separator + outputFile);
 
         try (Reader reader = new FileReader(inputPath.toFile()); Writer writer = new FileWriter(outputFilePath.toFile())) {
-            getShiftedMaps(shift, direction);
+            GetShiftedMaps(shift, direction);
             Execute(reader, writer);
         }
     }
@@ -92,7 +101,7 @@ public class CaesarShiftImpl implements CaesarShift {
     private String ExecuteWord(String word, int shift, EncryptDirection direction) throws IOException {
         String res;
         try (Reader reader = new StringReader(word); Writer writer = new StringWriter()) {
-            getShiftedMaps(shift, direction);
+            GetShiftedMaps(shift, direction);
             Execute(reader, writer);
             res = writer.toString();
         }

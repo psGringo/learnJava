@@ -11,6 +11,6 @@ public interface CaesarShift {
 
     String EncryptWord(String word, int shift) throws IOException;
 
-    void PrepareOutputPath(String name) throws IOException;
+    void CreateOutputDir(String name) throws IOException;
 
 }
