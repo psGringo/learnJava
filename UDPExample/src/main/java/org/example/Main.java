@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         ExecutorService service = Executors.newFixedThreadPool(1);
-        service.submit(() -> UDPReceiver.Execute());
+        service.submit(() -> org.example.UDPReceiver.Execute());
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
