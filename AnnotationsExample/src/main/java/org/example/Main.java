@@ -21,10 +21,15 @@ public class Main {
 
         System.out.println();
 
+        // allArgsContructor
         var constructorExample = new LombokConstructorExample<String>(1, 2, "this is description");
         var internalClassObject = new LombokConstructorExample.NoArgsExample();
         System.out.println(constructorExample);
         System.out.println(internalClassObject);
+
+        // requiredConstructor
+        var requiredConstructorExample = new LombokConstrutorExample2("hi", "there");
+        System.out.println(requiredConstructorExample);
 
         System.out.println();
 
