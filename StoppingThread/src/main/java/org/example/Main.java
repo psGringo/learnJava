@@ -34,7 +34,8 @@ public class Main {
 
 class Task implements Runnable {
 
-    private boolean needCancel = false;
+    // volatile means no caching
+    private volatile boolean needCancel = false;
 
     public void cancel() {
         needCancel = true;
