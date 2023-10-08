@@ -13,6 +13,7 @@ public class Main {
         public volatile boolean ready;
         public volatile int number;
 
+
         @Override
         public void run() {
             while (!ready) {
