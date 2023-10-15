@@ -6,7 +6,7 @@ public class Sheep extends Animal {
     }
 
     @Override
-    protected String getName() {
+    public String getName() {
         return "Sheep";
     }
 }

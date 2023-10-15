@@ -1,5 +1,7 @@
 package org.example.animals;
 
+import lombok.Getter;
+
 public class Wolf extends Animal {
 
     public Wolf() {
@@ -7,7 +9,7 @@ public class Wolf extends Animal {
     }
 
     @Override
-    protected String getName() {
+    public String getName() {
         return "Wolf";
     }
 }

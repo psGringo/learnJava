@@ -1,10 +1,10 @@
 package org.example;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Coordinates {
     @Getter
     @Setter

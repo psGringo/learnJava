@@ -3,6 +3,8 @@ package org.example.animals;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.*;
 
 import java.io.IOException;
@@ -10,14 +12,20 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public abstract class Animal implements Runnable {
-
+    @Getter
     protected Position position;
+    @Getter
     private AnimalType animalType;
     private final Life life;
 
+    @Getter
+    @Setter
+    private boolean isAlive;
+
     private TextGraphics textGraphics;
 
-    protected abstract String getName();
+
+    public abstract String getName();
 
     private MovementDirection currentDirection;
 
@@ -27,6 +35,7 @@ public abstract class Animal implements Runnable {
         this.life = Life.getInstance();
         this.currentDirection = MovementDirection.getRandomDirection();
         setStartPosition();
+        isAlive = true;
     }
 
     private void setStartPosition() {
@@ -41,28 +50,6 @@ public abstract class Animal implements Runnable {
             throw new RuntimeException(e);
         }
     }
-
-//    private void doMove(AnimalMove animalMove) {
-//        synchronized (Terminal.getInstance().getLaternaTerminal()) {
-//            try {
-//                life.printBorders();
-//
-//                animalMove.execute();
-//
-//                synchronized (life.getScreen()) {
-//                    life.getScreen().refresh();
-//                }
-//                life.getTerminal().flush();
-//
-//                if (position.X.getEnd() == AppProps.getMaxScreenX() || position.X.getStart() == 0) {
-//                    moveToNewDirecton();
-//                }
-//
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
 
     private String getEmptyName() {
         var sb = new StringBuilder();
@@ -107,6 +94,12 @@ public abstract class Animal implements Runnable {
     }
 
     protected void move() {
+
+        if (!isAlive) {
+            textGraphics.putString(position.X.getStart(), position.Y.getStart(), getEmptyName());
+            updateScreen();
+            return;
+        }
 
         if (currentDirection.equals(MovementDirection.ToTheRight)) {
 
