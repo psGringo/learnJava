@@ -25,6 +25,7 @@ public abstract class Animal implements Runnable {
     private TextGraphics textGraphics;
 
 
+
     public abstract String getName();
 
     private MovementDirection currentDirection;
@@ -36,6 +37,7 @@ public abstract class Animal implements Runnable {
         this.currentDirection = MovementDirection.getRandomDirection();
         setStartPosition();
         isAlive = true;
+
     }
 
     private void setStartPosition() {
