@@ -1,1 +1,3 @@
-rootProject.name = "alienQuest"
+rootProject.name = "demo"
+include("build")
+
