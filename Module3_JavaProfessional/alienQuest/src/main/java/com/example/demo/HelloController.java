@@ -1,16 +1,14 @@
 package com.example.demo;
 
 import lombok.AllArgsConstructor;
-import org.openapi.example.model.Greeting;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class HelloController implements org.openapi.example.api.GreetingsApi {
+public class HelloController implements org.openapi.greeting.GreetingsApi {
 
 
     private GreetingsService greetingsService;
@@ -21,8 +19,8 @@ public class HelloController implements org.openapi.example.api.GreetingsApi {
     }
 
     @Override
-    public ResponseEntity<Greeting> sayHello() {
-        var greeting = new Greeting();
+    public ResponseEntity<org.openapi.greeting.model.Greeting> sayHello() {
+        var greeting = new org.openapi.greeting.model.Greeting();
         greeting.message("hello");
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }
