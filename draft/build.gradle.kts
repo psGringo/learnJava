@@ -110,6 +110,87 @@ tasks.register("greetingsOpenApiGenerate", GenerateTask::class) {
     // "apis" to "", don't generate models
 }
 
+//val generateApi by tasks.registering(GenerateTask::class) {
+//    generatorName.set("spring")
+//    library.set("spring-boot")
+//    inputSpec.set("$rootDir/openapi/greetings.yaml")
+//    outputDir.set("$buildDir/generated/greetings")
+//    apiPackage.set("org.openapi.example.api")
+//    invokerPackage.set("org.openapi.example.invoker")
+//    modelPackage.set("org.openapi.example.model")
+//    generateApiDocumentation = false
+//    generateModelTests = false
+//    generateApiTests = false
+//    removeOperationIdPrefix = true
+//    configOptions.set(
+//            mapOf(
+//                    "dateLibrary" to "java8",
+//                    "skipDefaultInterface" to "true",
+//                    "interfaceOnly" to "true",
+//                    "serializableModel" to "true",
+//                    "useTags" to "false",
+//                    "hideGenerationTimeStamp" to "true",
+//                    "openApiNullable" to "false",
+//                    "sourceFolder" to "",
+//            )
+//    )
+//    globalProperties.putAll(mapOf("generateSupportingFiles" to "false"))
+//    //
+//    // "apis" to "", don't generate models
+//}
+
+fun configureGenerator(task: GenerateTask) {
+    task.generateAliasAsModel.set(false)
+    task.generateApiTests.set(false)
+    task.generateApiDocumentation.set(false)
+    task.generateModelTests.set(false)
+    task.generateModelDocumentation.set(false)
+    task.removeOperationIdPrefix.set(true)
+    task.globalProperties.set(mapOf(
+//            "models" to "",
+            "generateSupportingFiles" to "false"
+    ))
+    task.configOptions.set(mapOf(
+            "dateLibrary" to "java8",
+            "skipDefaultInterface" to "true",
+            "interfaceOnly" to "true",
+            "serializableModel" to "true",
+            "useTags" to "false",
+            "hideGenerationTimeStamp" to "true",
+            "openApiNullable" to "false",
+            "sourceFolder" to "",
+    ))
+}
+
+val generateGreetingsApi by tasks.registering(GenerateTask::class) {
+    configureGenerator(this)
+    generatorName.set("spring")
+    library.set("spring-boot")
+    inputSpec.set("$rootDir/openapi/greetings.yaml")
+    outputDir.set("$buildDir/generated/greetings")
+    apiPackage.set("org.openapi.greetings.api")
+    modelPackage.set("org.openapi.greetings.model")
+    modelNameSuffix.set("UI")
+    invokerPackage.set("org.openapi.greetings.invoker")
+}
+
+val generatePetstoreApi by tasks.registering(GenerateTask::class) {
+    configureGenerator(this)
+    generatorName.set("spring")
+    library.set("spring-boot")
+    inputSpec.set("$rootDir/openapi/petstore.yaml")
+    outputDir.set("$buildDir/generated/petstore")
+    apiPackage.set("org.openapi.petstore.api")
+    modelPackage.set("org.openapi.petstore.model")
+    modelNameSuffix.set("UI")
+    invokerPackage.set("org.openapi.petstore.invoker")
+}
+
+val compileJava by tasks.getting(JavaCompile::class) {
+    dependsOn(generateGreetingsApi)
+    dependsOn(generatePetstoreApi)
+}
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"

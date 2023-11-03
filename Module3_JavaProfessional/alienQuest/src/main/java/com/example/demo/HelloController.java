@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @AllArgsConstructor
-public class HelloController implements org.openapi.greeting.GreetingsApi {
-
+public class HelloController implements org.openapi.example.api.GreetingsApi {
 
     private GreetingsService greetingsService;
 
@@ -19,8 +19,8 @@ public class HelloController implements org.openapi.greeting.GreetingsApi {
     }
 
     @Override
-    public ResponseEntity<org.openapi.greeting.model.Greeting> sayHello() {
-        var greeting = new org.openapi.greeting.model.Greeting();
+    public ResponseEntity<org.openapi.example.model.Greeting> sayHello() {
+        var greeting = new org.openapi.example.model.Greeting();
         greeting.message("hello");
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }

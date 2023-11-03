@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.greetings;
 
 import lombok.AllArgsConstructor;
+import org.openapi.greetings.model.GreetingUI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-public class HelloController implements org.openapi.greeting.GreetingsApi {
-
+public class GreetingsController implements org.openapi.greetings.api.GreetingsApi {
 
     private GreetingsService greetingsService;
 
@@ -19,8 +19,8 @@ public class HelloController implements org.openapi.greeting.GreetingsApi {
     }
 
     @Override
-    public ResponseEntity<org.openapi.greeting.model.Greeting> sayHello() {
-        var greeting = new org.openapi.greeting.model.Greeting();
+    public ResponseEntity<GreetingUI> sayHello() {
+        var greeting = new GreetingUI();
         greeting.message("hello");
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }

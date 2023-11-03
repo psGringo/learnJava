@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.greetings;
 
 public interface GreetingsService {
     String sayHello();
