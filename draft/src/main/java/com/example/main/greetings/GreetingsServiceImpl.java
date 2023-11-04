@@ -1,4 +1,4 @@
-package com.example.demo.greetings;
+package com.example.main.greetings;
 
 public class GreetingsServiceImpl implements GreetingsService {
     @Override

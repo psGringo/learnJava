@@ -1,8 +1,8 @@
-package com.example.demo;
+package com.example.main;
 
 
-import com.example.demo.greetings.GreetingsService;
-import com.example.demo.greetings.GreetingsServiceImpl;
+import com.example.main.greetings.GreetingsService;
+import com.example.main.greetings.GreetingsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

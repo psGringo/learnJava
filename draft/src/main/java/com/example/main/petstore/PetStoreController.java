@@ -1,6 +1,6 @@
-package com.example.demo.petstore;
+package com.example.main.petstore;
 
-import com.example.demo.greetings.GreetingsService;
+import com.example.main.greetings.GreetingsService;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.openapi.petstore.model.PetUI;
@@ -15,7 +15,7 @@ public class PetStoreController implements org.openapi.petstore.api.PetsApi {
 
     private GreetingsService greetingsService;
 
-    @GetMapping("/")
+    @GetMapping("/pets")
     public String index() {
         return greetingsService.sayHello();
     }
