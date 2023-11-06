@@ -1,7 +1,7 @@
 import {CancelablePromise, Greeting, GreetingsService} from "../../openapi-generated";
 
 interface IGreetingsApiService {
-    sayHello(): CancelablePromise<any>
+    sayHello(): CancelablePromise<Greeting | Error>
 }
 
 export const GreetingsApiService: IGreetingsApiService = class GreetingsApiService {

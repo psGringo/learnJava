@@ -1,26 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from './Styles.less'
 import {GreetingsApiService} from "@/ApiService/GreetingsApiService";
-import {Greeting} from "../../../openapi-generated";
+import {useSelector} from "react-redux";
+import {IAppState, IRootState} from "@/Types/StoreModel";
+import {appStore} from "@/Store/ConfigureStore";
+import {setAppState} from "@/Store/ActionCreators";
 
 export const App: React.FC = () => {
 
-    const [greeting, setGreeting] = useState<Greeting> ({message: 'default'});
+    const {name, greeting} = useSelector<IRootState, IAppState>((state) => state.app)
 
     useEffect(() => {
-        GreetingsApiService.sayHello().then((result) => {
-            setGreeting(result)
+        GreetingsApiService.sayHello().then((greeting) => {
+            appStore.dispatch(setAppState({name: 'draft app', greeting}))
         })
     }, [])
 
     return (
         <div className={styles.app}>
             <div>
-                hello world
+                App name is: {name}
             </div>
 
             <div>
-                {greeting.message}
+                {greeting?.message}
             </div>
         </div>)
 }

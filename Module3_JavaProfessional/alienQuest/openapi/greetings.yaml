@@ -4,8 +4,6 @@ info:
   title: Swagger Greeting
   license:
     name: MIT
-servers:
-  - url: http://petstore.swagger.io/v1
 paths:
   /greetings:
     get:
