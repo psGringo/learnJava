@@ -3,7 +3,8 @@
     "src",
     "openapi/out",
     "tools",
-    "configs"
+    "configs",
+    "typings.d.ts"
   ],
   "compilerOptions": {
     "incremental": true,
@@ -15,7 +16,7 @@
       "esnext"
     ],
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "out",
     "noEmit": false,
     "isolatedModules": false,
@@ -46,7 +47,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-//    "types": ["@types/jest", "jest-playwright-preset", "expect-playwright"]
+    "forceConsistentCasingInFileNames": true
+    //    "types": ["@types/jest", "jest-playwright-preset", "expect-playwright"]
   }
 }

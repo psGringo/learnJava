@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import {App} from "@/Components/App/App";
 
-const App: React.FC = () => {
-    return (<div>hello world</div>)
-}
 
 ReactDOM.render(
     <App/>,
