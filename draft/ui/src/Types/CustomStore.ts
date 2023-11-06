@@ -1,6 +1,6 @@
 export interface ICustomAction<stateType> {
     type: string;
-    payload: Partial<stateType>
+    payload: Partial<stateType>;
 }
 
 export interface ICustomReducer<stateType> {

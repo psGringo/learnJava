@@ -1,4 +1,4 @@
-import {Greeting} from "../../openapi-generated";
+import {Greeting} from '../../openapi-generated';
 
 export interface IAppState {
     name: string;

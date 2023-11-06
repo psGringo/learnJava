@@ -1,6 +1,7 @@
-import {IAppState} from "@/Types/StoreModel";
-import {ICustomReducer} from "@/Types/CustomStore";
-import {SET_APP_STATE} from "@/Store/ActionTypes";
+/* eslint default-param-last: 0 */  // --> OFF
+import {SET_APP_STATE} from '@/Store/ActionTypes';
+import {ICustomReducer} from '@/Types/CustomStore';
+import {IAppState} from '@/Types/StoreModel';
 
 const initialState: IAppState = {
     name: 'draft',

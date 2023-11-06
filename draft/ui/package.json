@@ -18,8 +18,7 @@
     "stylelint": "stylelint \"**/*.less\"",
     "stylelint:fix": "stylelint \"**/*.less\" --fix",
     "stylelint:pre-commit": "stylelint \"**/*.less\" --fix --color --max-warnings=0",
-    "prettier:pre-commit": "prettier --write \"src/**/*.{js,ts,tsx,less}\"",
-    "prepare": "husky install"
+    "prettier:pre-commit": "prettier --write \"src/**/*.{js,ts,tsx,less}\""
   },
   "husky": {
     "hooks": {
@@ -74,11 +73,15 @@
     "electron-to-chromium": "1.4.118",
     "eslint": "8.53.0",
     "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest-dom": "4.0.1",
+    "eslint-plugin-jsdoc": "32.2.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-lodash": "7.4.0",
+    "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.6.0",

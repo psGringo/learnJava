@@ -1,6 +1,6 @@
-import {combineReducers, createStore} from "redux";
-import {IRootState} from "@/Types/StoreModel";
-import {appReducer} from "@/Store/AppReducer";
+import {combineReducers, createStore} from 'redux';
+import {appReducer} from '@/Store/AppReducer';
+import {IRootState} from '@/Types/StoreModel';
 
 export const initStore = () => {
 

@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import styles from './Styles.less'
-import {GreetingsApiService} from "@/ApiService/GreetingsApiService";
-import {useSelector} from "react-redux";
-import {IAppState, IRootState} from "@/Types/StoreModel";
-import {appStore} from "@/Store/ConfigureStore";
-import {setAppState} from "@/Store/ActionCreators";
+import {GreetingsApiService} from '@/ApiService/GreetingsApiService';
+import {setAppState} from '@/Store/ActionCreators';
+import {appStore} from '@/Store/ConfigureStore';
+import {IAppState, IRootState} from '@/Types/StoreModel';
 
 export const App: React.FC = () => {
 

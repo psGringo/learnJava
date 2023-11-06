@@ -1,18 +1,17 @@
-import {CancelablePromise, Greeting, GreetingsService} from "../../openapi-generated";
+import {CancelablePromise, Greeting, GreetingsService} from '../../openapi-generated';
 
 interface IGreetingsApiService {
-    sayHello(): CancelablePromise<Greeting | Error>
+    sayHello(): CancelablePromise<Greeting | Error>;
 }
 
 export const GreetingsApiService: IGreetingsApiService = class GreetingsApiService {
 
     public static sayHello(): CancelablePromise<Greeting | Error> {
-        return new CancelablePromise<any>((resolve) => {
+        return new CancelablePromise<Greeting | Error>((resolve) => {
             GreetingsService.sayHello().then((response) => {
-                console.log('here', response);
                 resolve(response);
-            }).catch((e) => {
-                console.log('here error', JSON.stringify(e));
+            }).catch(() => {
+                // TODO
             })
         });
     }

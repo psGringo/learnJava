@@ -3,7 +3,7 @@ module.exports = {
      * Разрешается не указывать расширения файлов для указанных типов.
      * https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
      */
-    'import/extensions': [2, 'ignorePackages', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
+    'import/extensions': [0, 'ignorePackages', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
 
     /*
      * Разрешается использовать именованные экспорты (кроме асинхронных компонентов).
