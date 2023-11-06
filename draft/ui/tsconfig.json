@@ -8,7 +8,7 @@
   ],
   "compilerOptions": {
     "incremental": true,
-    "target": "ES5",
+    "target": "ES2015",
     "module": "CommonJS",
     "lib": [
       "dom",
