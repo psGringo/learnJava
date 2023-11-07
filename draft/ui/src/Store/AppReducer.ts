@@ -18,6 +18,7 @@ export const appReducer: ICustomReducer<IAppState> = (
                 ...state,
                 ...action.payload
             }
+
         default:
             return state;
     }

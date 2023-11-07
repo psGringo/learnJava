@@ -1,3 +1,4 @@
+import {Configuration as DevServerConfiguration} from "webpack-dev-server";
 import {Configuration, EnvironmentPlugin} from 'webpack'
 import * as path from "path";
 import {getOptimization} from "./getOptimization";
@@ -14,7 +15,15 @@ const filename = (ext: string, withHash = false) => `${ext}/[name]${withHash ? h
 
 const sourceMapFilename = () => 'sourceMaps/[file].map';
 
+const devServerConfig: DevServerConfiguration = {
+    port: 2077,
+    static: {
+        directory: path.join(__dirname, 'out'),
+    }
+};
+
 const webpackConfigBase: Configuration = {
+    devServer: devServerConfig,
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'hidden-source-map' : 'source-map',
     optimization: getOptimization(isProduction),
@@ -31,7 +40,6 @@ const webpackConfigBase: Configuration = {
             '@api': path.resolve(__dirname, '../openapi')
         }
     },
-
 
     output: {
         clean: true,
@@ -62,5 +70,13 @@ const webpackConfigBase: Configuration = {
         })
     ]
 }
+
+// webpackConfigBase['devServer'] = {
+//     port: 3003,
+//     static: {
+//         directory: path.join(__dirname, 'out'),
+//         publicPath: 'src2/'
+//     }
+// }
 
 export default webpackConfigBase;

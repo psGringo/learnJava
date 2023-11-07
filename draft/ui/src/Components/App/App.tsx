@@ -5,10 +5,15 @@ import {GreetingsApiService} from '@/ApiService/GreetingsApiService';
 import {setAppState} from '@/Store/ActionCreators';
 import {appStore} from '@/Store/ConfigureStore';
 import {IAppState, IRootState} from '@/Types/StoreModel';
+import {useTranslation} from "react-i18next";
+import {I18NEXT_NAMESPACE} from "../../../i18n/Const";
+import {i18Object} from "../../../i18n/config";
 
 export const App: React.FC = () => {
 
-    const {name, greeting} = useSelector<IRootState, IAppState>((state) => state.app)
+    const {greeting} = useSelector<IRootState, IAppState>((state) => state.app)
+
+    const {t} = useTranslation(I18NEXT_NAMESPACE, {i18n: i18Object});
 
     useEffect(() => {
         GreetingsApiService.sayHello().then((greeting) => {
@@ -19,9 +24,8 @@ export const App: React.FC = () => {
     return (
         <div className={styles.app}>
             <div>
-                App name is: {name}
+                {t<string>('App.name')}
             </div>
-
             <div>
                 {greeting?.message}
             </div>
