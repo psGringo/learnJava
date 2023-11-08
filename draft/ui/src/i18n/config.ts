@@ -16,10 +16,10 @@ const resources = {
 export const i18Instance: i18n = i18next.createInstance();
 i18Instance.init({
     returnNull: false,
-    lng: 'ru',
+    lng: 'en',
     ns: [I18NEXT_NAMESPACE],
     resources,
-    fallbackLng: 'ru',
+    fallbackLng: 'en',
     // initImmediate: true
 }).then((t) => {
     console.log('here', t('App.description'));

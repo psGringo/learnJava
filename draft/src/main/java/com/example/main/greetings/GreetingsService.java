@@ -1,5 +1,5 @@
 package com.example.main.greetings;
 
 public interface GreetingsService {
-    String sayHello();
+    org.openapi.greetings.model.GreetingUI getGreeting();
 }

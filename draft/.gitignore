@@ -3,6 +3,8 @@ ui/node_modules
 ui/.idea
 ui/out
 
+nginx/logs
+
 HELP.md
 .gradle
 build/

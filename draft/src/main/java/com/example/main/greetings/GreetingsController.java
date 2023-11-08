@@ -19,8 +19,6 @@ public class GreetingsController implements org.openapi.greetings.api.GreetingsA
 
     @Override
     public ResponseEntity<GreetingUI> sayHello() {
-        var greeting = new GreetingUI();
-        greeting.message("hello");
-        return new ResponseEntity<>(greeting, HttpStatus.OK);
+        return new ResponseEntity<>(greetingsService.getGreeting(), HttpStatus.OK);
     }
 }

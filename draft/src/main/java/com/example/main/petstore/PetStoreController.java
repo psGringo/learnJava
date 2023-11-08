@@ -17,7 +17,7 @@ public class PetStoreController implements org.openapi.petstore.api.PetsApi {
 
     @GetMapping("/pets")
     public String index() {
-        return greetingsService.sayHello();
+        return "toDo";
     }
 
     @Override

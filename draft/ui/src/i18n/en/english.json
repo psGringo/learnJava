@@ -1,6 +1,6 @@
 {
   "App": {
-    "description": "this is draft app on java backend and react frontend",
-    "name": "Test name"
+    "name": "Draft",
+    "description": "java backend, react frontend, material ui"
   }
 }

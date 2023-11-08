@@ -2,6 +2,10 @@ start backend
 start ui
 start nginx
 
+in browser:
+http://localhost:3000/draftApp/
+
+all mocks and redirects in nginx/conf/nginx.conf
 
 backend:
   ./gradlew clean
@@ -9,6 +13,7 @@ backend:
   ./gradlew run // will run on 8080 port
 
 ui:
+  npm run generate
   npm run build:dev | npm run build
   npm run serve // will run on 2077 port
 
@@ -19,8 +24,13 @@ nginx:
   cmd
   cd nginx
   nginx.exe
-
   ||
   cmd
   cd nginx
   start nginx.exe
+
+  // --- TODO
+  add jest and tests on ui
+  fix pre commit check on ui
+  check if babel is setup
+
