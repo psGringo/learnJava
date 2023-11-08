@@ -10,9 +10,10 @@ all mocks and redirects in nginx/conf/nginx.conf
 backend:
   ./gradlew clean
   ./gradlew build
-  ./gradlew run // will run on 8080 port
+  ./gradlew bootRun // will run on 8080 port
 
 ui:
+  npm i || npm ci
   npm run generate
   npm run build:dev | npm run build
   npm run serve // will run on 2077 port
