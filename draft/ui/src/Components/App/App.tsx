@@ -1,5 +1,6 @@
 import {Button} from '@mui/material';
 import React, {useEffect, useState} from 'react';
+
 import {TFunction, useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import styles from './Styles.less'
@@ -11,9 +12,12 @@ import {appStore} from '@/Store/ConfigureStore';
 import {IAppState, IRootState} from '@/Types/StoreModel';
 
 
+
+
 const myUseTranslation = () => {
     const {t, i18n} = useTranslation(I18NEXT_NAMESPACE, {i18n: i18Instance});
     const myT = t<string>;
+
     return {t: myT, i18n};
 }
 
@@ -46,10 +50,10 @@ export const App: React.FC = () => {
         <div className={styles.app}>
             <div className={styles.topPanel}>
                 <div className={styles.name}>
-                    {'123456'}
+                    123456
                 </div>
                 <div className={styles.button}>
-                    <Button color={"primary"} className={styles.button} onClick={handleButtonClick} variant="contained">{getLang()}</Button>
+                    <Button className={styles.button} color="primary" onClick={handleButtonClick} variant="contained">{getLang()}</Button>
                 </div>
             </div>
             <div className={styles.container}>
