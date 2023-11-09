@@ -1,6 +1,6 @@
 import {Button} from '@mui/material';
 import React, {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import {TFunction, useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import styles from './Styles.less'
 import {GreetingsApiService} from '@/ApiService/GreetingsApiService';
@@ -10,11 +10,21 @@ import {setAppState} from '@/Store/ActionCreators';
 import {appStore} from '@/Store/ConfigureStore';
 import {IAppState, IRootState} from '@/Types/StoreModel';
 
+
+const myUseTranslation = () => {
+    const {t, i18n} = useTranslation(I18NEXT_NAMESPACE, {i18n: i18Instance});
+    const myT = t<string>;
+    return {t: myT, i18n};
+}
+
 export const App: React.FC = () => {
 
-    const {name, greeting} = useSelector<IRootState, IAppState>((state) => state.app)
 
-    const {t, i18n} = useTranslation(I18NEXT_NAMESPACE, {i18n: i18Instance});
+    const {t, i18n} = myUseTranslation();
+
+    const {greeting} = useSelector<IRootState, IAppState>((state) => state.app)
+
+
     const [lang, setLang] = useState(i18n.language);
 
     useEffect(() => {
@@ -36,7 +46,7 @@ export const App: React.FC = () => {
         <div className={styles.app}>
             <div className={styles.topPanel}>
                 <div className={styles.name}>
-                    {name}
+                    {'123456'}
                 </div>
                 <div className={styles.button}>
                     <Button color={"primary"} className={styles.button} onClick={handleButtonClick} variant="contained">{getLang()}</Button>
@@ -44,7 +54,7 @@ export const App: React.FC = () => {
             </div>
             <div className={styles.container}>
                 <div className={styles.block}>
-                    {t<string>('App.description')}
+                    {t('App.description')}
                 </div>
                 <div className={styles.block}>
                     {greeting?.message || 'backend greeting expected...'}
