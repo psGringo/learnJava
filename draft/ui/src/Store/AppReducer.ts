@@ -1,8 +1,8 @@
 /* eslint default-param-last: 0 */    // --> OFF
+import {i18Instance} from '@/i18n/config';
 import {SET_APP_STATE} from '@/Store/ActionTypes';
 import {ICustomReducer} from '@/Types/CustomStore';
 import {IAppState} from '@/Types/StoreModel';
-import {i18Instance} from "@/i18n/config";
 
 const initialState: IAppState = {
     name: i18Instance.t<string>('App.name'),

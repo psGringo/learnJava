@@ -71,12 +71,4 @@ const webpackConfigBase: Configuration = {
     ]
 }
 
-// webpackConfigBase['devServer'] = {
-//     port: 3003,
-//     static: {
-//         directory: path.join(__dirname, 'out'),
-//         publicPath: 'src2/'
-//     }
-// }
-
 export default webpackConfigBase;

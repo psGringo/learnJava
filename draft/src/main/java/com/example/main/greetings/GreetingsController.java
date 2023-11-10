@@ -12,11 +12,6 @@ public class GreetingsController implements org.openapi.greetings.api.GreetingsA
 
     private GreetingsService greetingsService;
 
-//    @GetMapping("/greetings")
-//    public String index() {
-//        return greetingsService.sayHello();
-//    }
-
     @Override
     public ResponseEntity<GreetingUI> sayHello() {
         return new ResponseEntity<>(greetingsService.getGreeting(), HttpStatus.OK);

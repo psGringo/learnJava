@@ -21,6 +21,4 @@ i18Instance.init({
     resources,
     fallbackLng: 'en',
     // initImmediate: true
-}).then((t) => {
-    console.log('here', t('App.description'));
-})
+});

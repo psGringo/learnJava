@@ -27,7 +27,7 @@ module.exports = {
      * Сортировка импортов по группам, а внутри них по алфавиту.
      * https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
      */
-    'import/order': [2, { alphabetize: { order: 'asc', caseInsensitive: true } }],
+    'import/order': [1, { alphabetize: { order: 'asc', caseInsensitive: true } }],
 
     /*
      * Отключение наблюдение за импортами зависимостей
