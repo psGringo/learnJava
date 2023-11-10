@@ -1,0 +1,2 @@
+packageManager=npm
+cd "../../"
