@@ -1,2 +1,0 @@
-packageManager=npm
-cd "../../"
