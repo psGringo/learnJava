@@ -20,12 +20,6 @@ paths:
           required: true
           schema:
             type: string
-        - name: optionId
-          in: query
-          description: command
-          required: true
-          schema:
-            type: integer
       responses:
         '200':
           description: nextState
@@ -73,7 +67,6 @@ components:
           maxItems: 100
           items:
             $ref: "#/components/schemas/Option"
-
 
     NextState:
       type: object

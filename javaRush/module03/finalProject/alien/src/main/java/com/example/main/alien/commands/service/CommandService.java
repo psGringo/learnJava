@@ -13,7 +13,7 @@ import org.reflections.scanners.SubTypesScanner;
 
 public class CommandService {
 
-    private static void execute(String commandName) {
+    public static void execute(String commandName) {
         Command command = getCommandByName(commandName);
         AppState appState = AppState.getInstance();
         var awaitedCommandClasses = appState.getAwaitedCommandClasses();

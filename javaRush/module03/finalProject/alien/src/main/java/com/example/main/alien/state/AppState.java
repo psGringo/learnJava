@@ -6,8 +6,7 @@ import com.example.main.alien.questions.states.QuestionState;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import lombok.Setter;
-
+import org.openapi.alien.model.StateMachineResponseUI;
 
 public class AppState {
     /**
@@ -16,11 +15,16 @@ public class AppState {
     @Getter
     private final List<Class<? extends Command>> awaitedCommandClasses;
 
+    @Getter
+    StateMachineResponseUI stateMachineResponseUI;
+
+    @Getter
     QuestionState questionState;
 
     private AppState() {
         questionState = QuestionService.getInstance().getNextQuestionState(null);
         awaitedCommandClasses = new ArrayList<>();
+        stateMachineResponseUI = new StateMachineResponseUI();
     }
 
     private static AppState appState;

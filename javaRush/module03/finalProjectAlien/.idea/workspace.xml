@@ -5,29 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="630c3ae7-5584-4277-9ad0-567e3d107219" name="Changes" comment="draft store changes">
-      <change afterPath="$PROJECT_DIR$/../finalProject/alien/openapi/alien.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../finalProject/alien/openapi/greetings.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/CommandAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/common/CommandAnnotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/ExitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/NextQuestionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/NextQuestionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/openapi/alien.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/openapi/alien.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/NextStateUiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/NextStateUiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/QuestionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/QuestionNodeDirection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/QuestionNodes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/services/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/CaptainsBridgeQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/CaptainsBridgeQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/CaptainsBridgeRefusedQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/CaptainsBridgeRefusedQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/ChallengeAcceptedQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/ChallengeAcceptedQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/ChallengeDeclinedQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/ChallengeDeclinedQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/FinalFailQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/FinalFailQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/FinalWinQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/FinalWinQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/InitialQuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/InitialQuestionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/questions/states/QuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/questions/states/QuestionState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/CommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/ExecutionResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/ExecutionStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/state/Option.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/state/AppState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/state/AppState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/.husky/pre-commit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/getOptimization.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/getRules.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.dev.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

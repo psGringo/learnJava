@@ -9,7 +9,7 @@
     "prebuild": "npm run generate",
     "build": "cross-env NODE_ENV=production webpack --config configs/webpack.prod.ts",
     "build:dev": "cross-env NODE_ENV=development webpack --config configs/webpack.dev.ts",
-    "generate": "openapi --input ../openapi/greetings.yaml --output ./openapi-generated -c axios",
+    "generate": "openapi --input ../openapi/greetings.yaml --input ../openapi/alien.yaml  --output ./openapi-generated -c axios",
     "serve": "webpack serve --config configs/webpack.dev.ts",
     "tsc": "npx tsc --skipLibCheck --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,7 @@
     "stylelint:fix": "stylelint \"**/*.less\" --fix",
     "stylelint:pre-commit": "stylelint \"**/*.less\" --fix --color --max-warnings=0",
     "prettier:pre-commit": "prettier --write \"src/**/*.{js,ts,tsx,less}\"",
-    "prepare": "cd ../.. && husky install javaRush/module03/finalProject/alien/ui/.husky"
+    "prepare": "cd ../.. && husky install alien/ui/.husky"
   }
   ,
   "msw": {

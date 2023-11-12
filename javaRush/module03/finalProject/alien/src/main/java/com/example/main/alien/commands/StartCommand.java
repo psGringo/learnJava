@@ -9,8 +9,8 @@ public class StartCommand extends Command {
 
     @Override
     public CommandExecutionResult execute() {
-
-
-        return null;
+        AppState.getInstance().getStateMachineResponseUI().questionMode(false);
+        AppState.getInstance().getStateMachineResponseUI().value("command start successfully executed");
+        return CommandExecutionResult.done();
     }
 }
