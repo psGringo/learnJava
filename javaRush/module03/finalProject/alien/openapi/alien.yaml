@@ -1,0 +1,99 @@
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: Alien
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3000
+paths:
+  /nextState:
+    get:
+      summary: nextState
+      operationId: nextState
+      tags:
+        - nextState
+      parameters:
+        - name: command
+          in: query
+          description: command
+          required: true
+          schema:
+            type: string
+        - name: optionId
+          in: query
+          description: command
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: nextState
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NextState"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Direction:
+      type: string
+      enum: [left, right]
+      x-enumNames: [HIGH, MEDIUM, LOW]
+
+    Option:
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: string
+        id:
+          type: integer
+
+    StateMachineResponse:
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: string
+        questionMode:
+          type: boolean
+        question:
+          type: string
+        options:
+          type: array
+          maxItems: 100
+          items:
+            $ref: "#/components/schemas/Option"
+
+
+    NextState:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+        stateMachineResponse:
+          type: object
+          $ref: "#/components/schemas/StateMachineResponse"
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

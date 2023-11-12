@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+cd javaRush/module03/finalProject/alien/ui
+npm run eslint
