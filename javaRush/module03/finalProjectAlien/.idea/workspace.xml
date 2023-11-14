@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="630c3ae7-5584-4277-9ad0-567e3d107219" name="Changes" comment="draft store changes">
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/openapi/alien.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/openapi/alien.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/NextStateUiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/NextStateUiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/commands/service/CommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/state/AppState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/src/main/java/com/example/main/alien/state/AppState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/.husky/pre-commit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/getOptimization.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/getRules.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.dev.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/configs/webpack.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/nginx/conf/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/nginx/conf/nginx.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/src/ApiService/GreetingsApiService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/src/Components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/src/Components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/src/Store/ActionCreators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/src/Store/ActionCreators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/src/Store/AppReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/src/Store/AppReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../finalProject/alien/ui/src/Types/StoreModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../finalProject/alien/ui/src/Types/StoreModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

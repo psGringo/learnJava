@@ -1,10 +1,8 @@
 package com.example.main.alien.questions.states;
 
-import org.openapi.alien.model.OptionUI;
-
 public class FinalFailQuestionState extends QuestionState {
     public FinalFailQuestionState() {
-        option = new OptionUI().value("Солгать о себе");
+        option = new org.openapi.alien.model.Option().value("Солгать о себе");
         question = "Твою ложь разоблачили" + System.lineSeparator() + "Поражение";
     }
 }

@@ -22,8 +22,12 @@ public class QuestionService {
 
     private QuestionState currentQuestionState;
 
+    public void clear() {
+        currentQuestionState = null;
+    }
+
     @SneakyThrows
-    public QuestionState getNextQuestionState(org.openapi.alien.model.OptionUI optionUI) {
+    public QuestionState getNextQuestionState(org.openapi.alien.model.Option option) {
         if (currentQuestionState == null) {
             currentQuestionState = InitialQuestionState.class.newInstance();
             return currentQuestionState;
@@ -43,7 +47,7 @@ public class QuestionService {
         }
 
         var nextQuestionState = nextStates.stream().filter(
-                (questionState) -> questionState.getOption().getValue().equals(optionUI.getValue())
+                (questionState) -> questionState.getOption().getValue().equals(option.getValue())
         ).findFirst();
 
         if (nextQuestionState.isPresent()) {

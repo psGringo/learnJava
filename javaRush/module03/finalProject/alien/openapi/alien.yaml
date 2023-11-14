@@ -20,6 +20,12 @@ paths:
           required: true
           schema:
             type: string
+        - name: payload
+          in: query
+          description: command
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: nextState
@@ -51,16 +57,23 @@ components:
         id:
           type: integer
 
-    StateMachineResponse:
+    CommandDescription:
       type: object
       required:
-        - value
+        - name
+        - needPayload
       properties:
-        value:
+        name:
           type: string
-        questionMode:
+        needPayload:
           type: boolean
-        question:
+
+    Question:
+      type: object
+      required:
+        - text
+      properties:
+        text:
           type: string
         options:
           type: array
@@ -68,13 +81,31 @@ components:
           items:
             $ref: "#/components/schemas/Option"
 
+    StateMachineResponse:
+      type: object
+      required:
+        - message
+        - renderComponentName
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+        renderComponentName:
+          type: string
+        nextCommands:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommandDescription"
+        question:
+          type: object
+          $ref: "#/components/schemas/Question"
+
     NextState:
       type: object
       required:
-        - command
+        - stateMachineResponse
       properties:
-        command:
-          type: string
         stateMachineResponse:
           type: object
           $ref: "#/components/schemas/StateMachineResponse"

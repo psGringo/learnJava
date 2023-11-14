@@ -1,10 +1,8 @@
 package com.example.main.alien.questions.states;
 
-import org.openapi.alien.model.OptionUI;
-
 public class FinalWinQuestionState extends QuestionState {
     public FinalWinQuestionState() {
-        option = new OptionUI().value("Рассказать правду о себе");
+        option = new org.openapi.alien.model.Option().value("Рассказать правду о себе");
         question = "Тебя вернули домой" + System.lineSeparator() + "Победа";
     }
 }

@@ -1,6 +1,18 @@
 {
   "App": {
-    "name": "Draft",
-    "description": "java backend, react frontend, material ui"
+    "name": "Alien Quest",
+    "description": "step by step game",
+    "start": "START",
+    "legend": "You are in cosmoport and ready to board to you ship...",
+    "buttonsCaptions": {
+      "start": "Start",
+      "enter_name": "Next",
+      "next_question": "Next",
+      "exit": "Exit"
+    },
+    "enterName": {
+      "errorLabel": "Please enter name",
+      "placeholder": "Ваше имя"
+    }
   }
 }

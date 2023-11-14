@@ -1,10 +1,8 @@
 package com.example.main.alien.questions.states;
 
-import org.openapi.alien.model.OptionUI;
-
 public class ChallengeDeclinedQuestionState extends QuestionState {
     public ChallengeDeclinedQuestionState() {
         question = "Ты отклонил вызов." + System.lineSeparator() + "Поражение";
-        option = new OptionUI().value("Отклонить вызов");
+        option = new org.openapi.alien.model.Option().value("Отклонить вызов");
     }
 }

@@ -1,8 +1,8 @@
-import {Greeting} from '../../openapi-generated';
+import {TNextStateOrError} from '@/Types/CustomStore';
 
 export interface IAppState {
     name: string;
-    greeting: Greeting | null;
+    nextState: TNextStateOrError;
 }
 
 export interface IRootState {

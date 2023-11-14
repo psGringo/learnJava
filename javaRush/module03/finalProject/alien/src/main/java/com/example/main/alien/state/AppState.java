@@ -6,17 +6,36 @@ import com.example.main.alien.questions.states.QuestionState;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import org.openapi.alien.model.StateMachineResponseUI;
+import org.openapi.alien.model.StateMachineResponse;
 
 public class AppState {
+
     /**
-     * Commands that possibly can be executed
+     * Last received command
      */
     @Getter
-    private final List<Class<? extends Command>> awaitedCommandClasses;
+    CommandState commandState;
 
     @Getter
-    StateMachineResponseUI stateMachineResponseUI;
+    GameState gameState;
+
+    @Getter
+    private List<Class<? extends Command>> awaitedCommandClasses;
+
+    @Getter
+    org.openapi.alien.model.StateMachineResponse stateMachineResponse;
+
+    public void clear() {
+        QuestionService.getInstance().clear();
+        awaitedCommandClasses.clear();
+        stateMachineResponse = null;
+        commandState = null;
+
+        questionState = QuestionService.getInstance().getNextQuestionState(null);
+        awaitedCommandClasses = new ArrayList<>();
+        stateMachineResponse = new StateMachineResponse();
+        commandState = new CommandState();
+    }
 
     @Getter
     QuestionState questionState;
@@ -24,7 +43,9 @@ public class AppState {
     private AppState() {
         questionState = QuestionService.getInstance().getNextQuestionState(null);
         awaitedCommandClasses = new ArrayList<>();
-        stateMachineResponseUI = new StateMachineResponseUI();
+        stateMachineResponse = new StateMachineResponse();
+        commandState = new CommandState();
+        gameState = new GameState();
     }
 
     private static AppState appState;

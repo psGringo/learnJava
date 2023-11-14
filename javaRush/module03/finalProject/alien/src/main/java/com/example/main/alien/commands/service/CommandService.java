@@ -13,37 +13,58 @@ import org.reflections.scanners.SubTypesScanner;
 
 public class CommandService {
 
-    public static void execute(String commandName) {
+    public static void execute(String commandName, String payload) {
         Command command = getCommandByName(commandName);
         AppState appState = AppState.getInstance();
         var awaitedCommandClasses = appState.getAwaitedCommandClasses();
         if (awaitedCommandClasses.isEmpty()) {
-            doExecute(command);
+            doExecute(command, payload);
         } else {
             Optional<Class<? extends Command>> awaitedCommandClass = awaitedCommandClasses.stream().filter(
                     aClass -> aClass.equals(command.getClass())
             ).findFirst();
 
             if (awaitedCommandClass.isPresent()) {
-                doExecute(command);
+                doExecute(command, payload);
                 appState.getAwaitedCommandClasses().clear();
             } else {
                 String msg = "waiting for %s commands now but received %s";
                 StringBuilder sb = new StringBuilder();
-                awaitedCommandClasses.forEach(aClass -> {
-                    sb.append(aClass.getName());
-                });
-                throw new IllegalArgumentException(String.format(msg, sb, commandName));
+
+                for (int i = 0; i < awaitedCommandClasses.size(); i++) {
+
+                    var aClass = awaitedCommandClasses.get(i);
+
+                    if (aClass.isAnnotationPresent(CommandAnnotation.class)) {
+                        CommandAnnotation commandAnnotation = aClass.getAnnotation(CommandAnnotation.class);
+                        if (i != awaitedCommandClasses.size() - 1) {
+                            sb.append(commandAnnotation.name()).append(" | ").append(System.lineSeparator());
+                        } else {
+                            sb.append(commandAnnotation.name());
+                        }
+                    }
+                }
+
+                String formattedMsg = String.format(msg, sb, commandName);
+
+                appState.getStateMachineResponse().error(formattedMsg);
             }
         }
     }
 
-    private static void doExecute(Command command) {
+    private static void doExecute(Command command, String payload) {
+
         CommandExecutionResult commandExecutionResult = command.execute();
         var status = commandExecutionResult.getStatus();
+
         AppState appState = AppState.getInstance();
-        if (status.equals(ExecutionStatus.NeedAddAwaitedCommands)) {
+        appState.getCommandState().setCommand(command);
+        appState.getCommandState().setPayload(payload);
+
+        if (status.equals(ExecutionStatus.WAIT)) {
             appState.getAwaitedCommandClasses().addAll(commandExecutionResult.getAwaitedCommandClasses());
+        } else if (status.equals(ExecutionStatus.DONE)) {
+            appState.getAwaitedCommandClasses().clear();
         }
     }
 

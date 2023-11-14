@@ -96,7 +96,7 @@ val generateAlienApi by tasks.registering(GenerateTask::class) {
     outputDir.set("$buildDir/generated/alien")
     apiPackage.set("org.openapi.alien.api")
     modelPackage.set("org.openapi.alien.model")
-    modelNameSuffix.set("UI")
+//    modelNameSuffix.set("UI")
     invokerPackage.set("org.openapi.alien.invoker")
 }
 

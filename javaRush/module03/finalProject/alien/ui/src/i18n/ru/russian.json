@@ -1,6 +1,18 @@
 {
   "App": {
-    "name": "Draft",
-    "description": "Это приложение на java и react"
+    "name": "Игра пришелец",
+    "description": "пошаговая игра",
+    "start": "START",
+    "legend": "Ты стоишь в космическом порту и готов подняться на борт своего корабля...",
+    "buttonsCaptions": {
+      "start": "Старт",
+      "enter_name": "Далее",
+      "next_question": "Далее",
+      "exit": "Выход"
+    },
+    "enterName": {
+      "errorLabel": "Пожалуйста введите имя",
+      "placeholder": "Your name"
+    }
   }
 }

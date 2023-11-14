@@ -2,19 +2,19 @@ package com.example.main.alien.commands;
 
 import com.example.main.alien.commands.common.CommandAnnotation;
 import com.example.main.alien.commands.common.CommandExecutionResult;
-import com.example.main.alien.state.AppState;
+import com.example.main.alien.state.UserGameState;
 
-@CommandAnnotation(name = "start")
-public class StartCommand extends Command {
+@CommandAnnotation(name = "enter_name")
+public class EnterNameCommand extends CommandWithPayload {
     @Override
     public CommandExecutionResult execute() {
-        var response = AppState.getInstance().getStateMachineResponse();
-        response.message("please enter name");
-        response.renderComponentName(EnterNameCommand.getName(EnterNameCommand.class));
+
+        String name = getPayLoad();
+        getAppState().getGameState().getResults().put(name, new UserGameState(name));
 
         var nextCommandsList = getNewEmptyAwaitedCommandList();
+        nextCommandsList.add(NextQuestionCommand.class);
         nextCommandsList.add(ExitCommand.class);
-        nextCommandsList.add(EnterNameCommand.class);
 
         return CommandExecutionResult.wait(nextCommandsList);
     }
