@@ -1,0 +1,45 @@
+Use draft
+Use StatePattern
+Use CommandPattern
+
+
+ ./getState
+
+  on ui render State
+
+
+StateMachine {
+
+  map: {
+   maxX: 100
+   maxY: 100  
+ }
+
+  Plants: {
+
+   plant1: {
+    coordinates:
+  },
+
+   plant1: {
+    coordinates:
+  }
+
+  }
+
+  Animals: {
+
+  Wolf: {
+    coordinates:
+    health:...
+  },
+     
+  Ship: {
+    coordinates:
+    health:...
+  }
+   
+}
+
+
+}
