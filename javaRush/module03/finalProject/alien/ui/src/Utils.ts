@@ -4,6 +4,8 @@ import {I18NEXT_NAMESPACE} from '@/i18n/Const';
 import {TNextStateOrError} from '@/Types/CustomStore';
 import {NextState} from '../openapi-generated';
 import {ENTER_NAME_COMMAND, EXIT_COMMAND, NEXT_QUESTION_COMMAND, START_COMMAND} from '@/Const';
+import {AlienApiService} from "@/ApiService/AlienApiService";
+import {setAppState} from "@/Store/ActionCreators";
 
 export const useTranslationTyped = () => {
     const {t, i18n} = useTranslation(I18NEXT_NAMESPACE, {i18n: i18Instance});
@@ -26,4 +28,16 @@ export const getButtonCaptions = () => {
     buttonCaptionsMap.set(EXIT_COMMAND, i18Instance.t('App.buttonsCaptions.exit'));
 
     return buttonCaptionsMap;
+}
+
+export const getButtonHandler = (commandName: string, needPayload: boolean, dispatch, value: string) => {
+    const handler = () => {
+        const payload = needPayload ? value : undefined;
+
+        AlienApiService.getNextState(commandName, payload).then((nextState) => {
+            dispatch(setAppState(nextState));
+        })
+    }
+
+    return handler;
 }

@@ -11,6 +11,6 @@ public class GameState {
     private HashMap<String, UserGameState> results;
 
     public GameState() {
-        HashMap<String, UserGameState> results = new HashMap<String, UserGameState>();
+        results = new HashMap<String, UserGameState>();
     }
 }

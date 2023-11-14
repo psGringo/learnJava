@@ -54,12 +54,12 @@ public class CommandService {
 
     private static void doExecute(Command command, String payload) {
 
-        CommandExecutionResult commandExecutionResult = command.execute();
-        var status = commandExecutionResult.getStatus();
-
         AppState appState = AppState.getInstance();
         appState.getCommandState().setCommand(command);
         appState.getCommandState().setPayload(payload);
+
+        CommandExecutionResult commandExecutionResult = command.execute();
+        var status = commandExecutionResult.getStatus();
 
         if (status.equals(ExecutionStatus.WAIT)) {
             appState.getAwaitedCommandClasses().addAll(commandExecutionResult.getAwaitedCommandClasses());
