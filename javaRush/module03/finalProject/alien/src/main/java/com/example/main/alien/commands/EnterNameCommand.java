@@ -2,11 +2,8 @@ package com.example.main.alien.commands;
 
 import com.example.main.alien.commands.common.CommandAnnotation;
 import com.example.main.alien.commands.common.CommandExecutionResult;
-import com.example.main.alien.commands.service.QuestionService;
+import com.example.main.alien.questions.services.QuestionService;
 import com.example.main.alien.state.UserGameState;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapi.alien.model.Option;
 
 @CommandAnnotation(name = "enter_name")
 public class EnterNameCommand extends CommandWithPayload {
@@ -19,7 +16,7 @@ public class EnterNameCommand extends CommandWithPayload {
         var response = getAppState().getStateMachineResponse();
         response.renderComponentName(NextQuestionCommand.getName(NextQuestionCommand.class));
 
-        QuestionService.setNextQuestion();
+        QuestionService.getInstance().setNextQuestion();
 
         var nextCommandsList = getNewEmptyAwaitedCommandList();
         nextCommandsList.add(ExitCommand.class);

@@ -5,7 +5,6 @@ import com.example.main.alien.commands.common.CommandExecutionResult;
 import com.example.main.alien.state.AppState;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
 
 public abstract class Command {
 

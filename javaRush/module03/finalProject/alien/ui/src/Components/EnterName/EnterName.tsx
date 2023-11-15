@@ -1,11 +1,11 @@
-import {Button, TextField} from '@mui/material';
+import {TextField} from '@mui/material';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styles from './Styles.less';
-import {AlienApiService} from '@/ApiService/AlienApiService';
-import {setAppState} from '@/Store/ActionCreators';
-import {getButtonCaptions, isTypeIsNextState, useTranslationTyped} from '@/Utils';
+import {isTypeIsNextState, useTranslationTyped} from '@/Utils';
 import {IAppState, IRootState} from '@/Types/StoreModel';
+import {Buttons} from '@/Components/Buttons/Buttons';
+import {setPayload} from '@/Store/ActionCreators';
 
 export const EnterName: React.FC = () => {
 
@@ -13,11 +13,12 @@ export const EnterName: React.FC = () => {
 
     const {t} = useTranslationTyped();
 
-    const dispatch = useDispatch();
-
     const [value, setValue] = useState('');
 
+    const dispatch = useDispatch();
+    
     const handleChange = (e) => {
+        dispatch(setPayload(e.target.value)); // TODO Think how to optimize
         setValue(e.target.value);
     }
 
@@ -35,41 +36,6 @@ export const EnterName: React.FC = () => {
         return (hasStateMachineError() && t('App.enterName.errorLabel')) || '';
     }
 
-    const getButtonHandler = (commandName: string, needPayload: boolean) => {
-        const handler = () => {
-            const payload = needPayload ? value : undefined;
-
-            AlienApiService.getNextState(commandName, payload).then((nextState) => {
-                dispatch(setAppState(nextState));
-            })
-        }
-
-        return handler;
-    }
-
-
-    const getButtons = () => {
-        if (isTypeIsNextState(nextState)) {
-            const response = nextState.stateMachineResponse;
-            const buttons: React.ReactNode[] = [];
-
-            response.nextCommands?.forEach((command) => {
-                buttons.push(<Button
-                    color="primary" onClick={getButtonHandler(command.name, command.needPayload)} size="large"
-                    variant="contained">
-                    {getButtonCaptions().get(command.name)}
-                </Button>);
-            });
-
-            const node: React.ReactNode = <div className={styles.buttons}>{buttons}</div>;
-
-            return node;
-        }
-
-        return null;
-    }
-
-
     return (<div className={styles.container}>
 
         <div className={styles.label}>
@@ -85,9 +51,7 @@ export const EnterName: React.FC = () => {
                 fullWidth/>
         </div>
 
-
-        {getButtons()}
-
+        <Buttons/>
 
         <div className={styles.block}>
             {hasStateMachineError() && (<div>

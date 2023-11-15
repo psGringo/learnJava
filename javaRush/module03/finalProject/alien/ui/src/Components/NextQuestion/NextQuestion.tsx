@@ -1,13 +1,14 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import styles from './Styles.less';
+import {Buttons} from '@/Components/Buttons/Buttons';
+import {QuestionOptions} from '@/Components/QuestionOptions/QuestionOptions';
 import {IAppState, IRootState} from '@/Types/StoreModel';
 import {isTypeIsNextState} from '@/Utils';
 
 export const NextQuestion: React.FC = () => {
 
     const {nextState} = useSelector<IRootState, IAppState>((s) => s.app);
-
 
     const hasStateMachineError: () => (boolean) = () => {
         if (isTypeIsNextState(nextState)) {
@@ -35,6 +36,14 @@ export const NextQuestion: React.FC = () => {
             {getQuestion()}
         </div>
 
+        <div className={styles.block}>
+            <QuestionOptions/>
+        </div>
+
+        <div className={styles.block}>
+            <Buttons />
+        </div>
+
 
         <div className={styles.block}>
             {hasStateMachineError() && (<div>
@@ -42,5 +51,6 @@ export const NextQuestion: React.FC = () => {
             </div>)}
         </div>
 
-    </div>);
+    </div>
+    );
 }
