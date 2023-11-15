@@ -8,7 +8,8 @@
       "start": "Start",
       "enter_name": "Next",
       "next_question": "Next",
-      "exit": "Exit"
+      "exit": "Exit",
+      "finish": "Finish"
     },
     "enterName": {
       "errorLabel": "Please enter name",

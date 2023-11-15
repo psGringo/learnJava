@@ -53,8 +53,11 @@ public class QuestionService {
 
         if (!nextQuestionState.isPresent()) {
             throw new IllegalArgumentException("smth wrong with next question states");
-        } else
+        } else {
+            currentQuestionState = nextQuestionState.get();
             return nextQuestionState.get();
+        }
+
     }
 
     public void setNextQuestion() {
@@ -62,12 +65,13 @@ public class QuestionService {
         // To think. With this var below it always null on first iteration, why ?
         var questionState = AppState.getInstance().getQuestionState();
 
+        QuestionState nextQuestionState = null;
         if (AppState.getInstance().getQuestionState() == null) {
-            var nextQuestionState = QuestionService.getInstance().getNextQuestionState(null);
+            nextQuestionState = QuestionService.getInstance().getNextQuestionState(null);
             appState.setQuestionState(nextQuestionState);
         } else {
             var selectedOption = AppState.getInstance().getQuestionState().getOption();
-            var nextQuestionState = QuestionService.getInstance().getNextQuestionState(selectedOption);
+            nextQuestionState = QuestionService.getInstance().getNextQuestionState(selectedOption);
             appState.setQuestionState(nextQuestionState);
         }
 

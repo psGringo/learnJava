@@ -8,9 +8,9 @@ import lombok.Getter;
 public class GameState {
 
     @Getter
-    private HashMap<String, UserGameState> results;
+    private HashMap<String, org.openapi.alien.model.GameResult> results;
 
     public GameState() {
-        results = new HashMap<String, UserGameState>();
+        results = new HashMap<String, org.openapi.alien.model.GameResult>();
     }
 }

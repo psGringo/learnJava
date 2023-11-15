@@ -72,6 +72,8 @@ components:
       type: object
       required:
         - text
+        - isLast
+        - options
       properties:
         text:
           type: string
@@ -80,6 +82,18 @@ components:
           maxItems: 100
           items:
             $ref: "#/components/schemas/Option"
+
+    GameResult:
+      type: object
+      required:
+        - playerName
+      properties:
+        playerName:
+          type: string
+        gameNumber:
+          type: string
+        isVictory:
+          type: boolean
 
     StateMachineResponse:
       type: object
@@ -100,6 +114,10 @@ components:
         question:
           type: object
           $ref: "#/components/schemas/Question"
+        gameResults:
+          type: array
+          items:
+            $ref: "#/components/schemas/GameResult"
 
     NextState:
       type: object

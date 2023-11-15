@@ -21,8 +21,13 @@ public class NextQuestionCommand extends CommandWithPayload {
         QuestionService.getInstance().setNextQuestion();
 
         var nextCommandsList = getNewEmptyAwaitedCommandList();
+        var isLastQuestion = getAppState().getQuestionState().getNextQuestions().isEmpty();
         nextCommandsList.add(ExitCommand.class);
-        nextCommandsList.add(NextQuestionCommand.class);
+        if (isLastQuestion) {
+            nextCommandsList.add(FinishCommand.class);
+        } else {
+            nextCommandsList.add(NextQuestionCommand.class);
+        }
 
         return CommandExecutionResult.wait(nextCommandsList);
     }

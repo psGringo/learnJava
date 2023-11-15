@@ -1,13 +1,14 @@
 import {Button} from '@mui/material';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import styles from './Styles.less'
 import {EnterName} from '@/Components/EnterName/EnterName';
 import {Start} from '@/Components/Start/Start';
-import {ENTER_NAME_COMMAND, EXIT_COMMAND, NEXT_QUESTION_COMMAND, START_COMMAND} from '@/Const';
+import {ENTER_NAME_COMMAND, EXIT_COMMAND, FINISH_COMMAND, NEXT_QUESTION_COMMAND, START_COMMAND} from '@/Const';
 import {IAppState, IRootState} from '@/Types/StoreModel';
 import {isTypeIsNextState, useTranslationTyped} from '@/Utils';
 import {NextQuestion} from '@/Components/NextQuestion/NextQuestion';
+import {Finish} from '@/Components/Finish/Finish';
 
 export const getRenderStates = () => {
     const stateMap = new Map<string, React.ReactNode>();
@@ -16,6 +17,7 @@ export const getRenderStates = () => {
     stateMap.set(ENTER_NAME_COMMAND, <EnterName/>);
     stateMap.set(NEXT_QUESTION_COMMAND, <NextQuestion/>);
     stateMap.set(EXIT_COMMAND, <Start/>);
+    stateMap.set(FINISH_COMMAND, <Finish/>);
 
     return stateMap;
 }
@@ -27,13 +29,7 @@ export const App: React.FC = () => {
 
     const {i18n} = useTranslationTyped();
 
-    const dispatch = useDispatch();
-
     const [lang, setLang] = useState(i18n.language);
-
-    useEffect(() => {
-
-    }, [dispatch])
 
     const getLang = () => {
         return lang === 'ru' ? 'en' : 'ru';

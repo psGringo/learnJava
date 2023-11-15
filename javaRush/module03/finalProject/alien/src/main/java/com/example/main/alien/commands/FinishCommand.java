@@ -5,22 +5,21 @@ import com.example.main.alien.commands.common.CommandExecutionResult;
 import com.example.main.alien.questions.services.QuestionService;
 import org.openapi.alien.model.GameResult;
 
-@CommandAnnotation(name = "enter_name")
-public class EnterNameCommand extends CommandWithPayload {
+@CommandAnnotation(name = "finish")
+public class FinishCommand extends CommandWithPayload {
     @Override
     public CommandExecutionResult execute() {
 
         String name = getPayLoad();
         getAppState().getGameState().getResults().put(name, new GameResult());
+        getAppState().clear();
 
         var response = getAppState().getStateMachineResponse();
-        response.renderComponentName(NextQuestionCommand.getName(NextQuestionCommand.class));
+        response.renderComponentName(NextQuestionCommand.getName(FinishCommand.class));
 
         QuestionService.getInstance().setNextQuestion();
-
         var nextCommandsList = getNewEmptyAwaitedCommandList();
-        nextCommandsList.add(ExitCommand.class);
-        nextCommandsList.add(NextQuestionCommand.class);
+        nextCommandsList.add(StartCommand.class);
 
         return CommandExecutionResult.wait(nextCommandsList);
     }
