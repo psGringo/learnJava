@@ -10,8 +10,11 @@ public class ExitCommand extends Command {
     public CommandExecutionResult execute() {
 
         getAppState().clear();
+        var response = AppState.getInstance().getStateMachineResponse();
 
-        AppState.getInstance().getStateMachineResponse().renderComponentName("start");
+        response.renderComponentName(StartCommand.getName(StartCommand.class));
+        var gameResultList = getAppState().getGameState().getResults();
+        response.gameResults(gameResultList);
 
         return CommandExecutionResult.done();
     }

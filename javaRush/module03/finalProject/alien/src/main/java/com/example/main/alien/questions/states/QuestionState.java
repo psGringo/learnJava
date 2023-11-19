@@ -13,8 +13,11 @@ public class QuestionState {
     protected org.openapi.alien.model.Option option;
     @Getter
     protected List<Class<? extends QuestionState>> nextQuestions;
+    @Getter
+    protected boolean isVictoryState;
 
     public QuestionState() {
         nextQuestions = new ArrayList<>();
+        isVictoryState = false;
     }
 }

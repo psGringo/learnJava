@@ -6,6 +6,7 @@ import {AlienApiService} from '@/ApiService/AlienApiService';
 import {setAppState} from '@/Store/ActionCreators';
 import {useTranslationTyped} from '@/Utils';
 import {START_COMMAND} from '@/Const';
+import {GameResults} from '@/Components/GameResults/GameResults';
 
 export const Start: React.FC = () => {
 
@@ -23,7 +24,9 @@ export const Start: React.FC = () => {
     return (<div className={styles.container}>
         <Button
             color="primary" onClick={handleNext}
-            variant="contained">
+            size="large"
+            variant="contained"
+        >
             {t('App.start')}
         </Button>
         <div className={styles.block}>
@@ -31,6 +34,9 @@ export const Start: React.FC = () => {
         </div>
         <div className={styles.block}>
             {t('App.legend')}
+        </div>
+        <div className={styles.block}>
+            <GameResults/>
         </div>
     </div>);
 }

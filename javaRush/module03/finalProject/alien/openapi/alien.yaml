@@ -91,7 +91,7 @@ components:
         playerName:
           type: string
         gameNumber:
-          type: string
+          type: integer
         isVictory:
           type: boolean
 

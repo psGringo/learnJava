@@ -14,6 +14,14 @@
     "enterName": {
       "errorLabel": "Пожалуйста введите имя",
       "placeholder": "Your name"
+    },
+    "results": {
+      "title": "Результаты:",
+      "victory": "Победа",
+      "failure": "Проигрыш",
+      "userName":  "Имя пользователя",
+      "gameNumber": "Номер игры",
+       "result": "Результат"
     }
   }
 }

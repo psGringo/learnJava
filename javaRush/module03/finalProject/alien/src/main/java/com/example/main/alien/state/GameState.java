@@ -1,16 +1,27 @@
 package com.example.main.alien.state;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 import lombok.Getter;
+import org.openapi.alien.model.GameResult;
 
 @Data
 public class GameState {
 
+    private int count;
+
     @Getter
-    private HashMap<String, org.openapi.alien.model.GameResult> results;
+    private List<org.openapi.alien.model.GameResult> results;
+
+    public void addGameResult(GameResult gameResult) {
+        count++;
+        gameResult.gameNumber(count);
+        results.add(gameResult);
+    }
 
     public GameState() {
-        results = new HashMap<String, org.openapi.alien.model.GameResult>();
+        count = 0;
+        results = new ArrayList<>();
     }
 }

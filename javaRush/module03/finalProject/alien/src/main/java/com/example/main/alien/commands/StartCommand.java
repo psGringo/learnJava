@@ -8,6 +8,7 @@ import com.example.main.alien.state.AppState;
 public class StartCommand extends Command {
     @Override
     public CommandExecutionResult execute() {
+        getAppState().clear();
         var response = AppState.getInstance().getStateMachineResponse();
         response.message("please enter name");
         response.renderComponentName(EnterNameCommand.getName(EnterNameCommand.class));

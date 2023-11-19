@@ -11,7 +11,7 @@ public class EnterNameCommand extends CommandWithPayload {
     public CommandExecutionResult execute() {
 
         String name = getPayLoad();
-        getAppState().getGameState().getResults().put(name, new GameResult());
+        getAppState().setUserName(name);
 
         var response = getAppState().getStateMachineResponse();
         response.renderComponentName(NextQuestionCommand.getName(NextQuestionCommand.class));

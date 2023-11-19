@@ -12,6 +12,27 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
+//tasks.named<Test>("test") {
+//    useJUnitPlatform()
+
+//    sourceSets {
+//        test {
+//            resources {
+//                srcDir("test")
+//            }
+//        }
+//    }
+
+//    testLogging {
+//        setShowStandardStreams(true)
+//        events("passed")
+//    }
+//}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -41,16 +62,20 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation:3.1.2")
     implementation("javax.validation:validation-api:2.0.1.Final")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.testng:testng:7.1.0")
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.reflections:reflections:0.10.2")
-}
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.7.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+    implementation("org.slf4j:slf4j-api:1.7.25")
+    testImplementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation("ch.qos.logback:logback-core:1.2.3")
 }
 
 fun configureGenerator(task: GenerateTask) {

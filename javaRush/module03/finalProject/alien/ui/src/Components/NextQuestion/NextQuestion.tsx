@@ -36,12 +36,10 @@ export const NextQuestion: React.FC = () => {
             {getQuestion()}
         </div>
 
-        <div className={styles.block}>
-            <QuestionOptions/>
-        </div>
+        <QuestionOptions/>
 
         <div className={styles.block}>
-            <Buttons />
+            <Buttons/>
         </div>
 
 
