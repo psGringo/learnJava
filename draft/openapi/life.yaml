@@ -1,0 +1,188 @@
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: Swagger Life Game
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3000
+paths:
+  /greetings:
+    get:
+      summary: sayHello
+      operationId: sayHello
+      tags:
+        - greetings
+      responses:
+        '200':
+          description: sayingHello
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Greeting"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+
+    MovementDirection:
+      type: string
+      nullable: true
+      enum:
+        - up
+        - down
+        - left
+        - right
+        - null
+        - upRight
+        - upLeft
+        - bottomRight
+        - bottomLeft
+
+    GodParticle:
+      type: object
+      required:
+        - name
+        - health
+        - positionX
+        - positionY
+      properties:
+        name:
+          type: string
+        health:
+          type: integer
+          minimum: 0
+          maximum: 100
+        age:
+          type: integer
+          minimum: 0
+          maximum: 100
+        hungerSatisfaction:
+          type: integer
+          minimum: 0
+          maximum: 100
+        positionX:
+          type: integer
+        positionY:
+          type: integer
+    Plant:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+
+    Grass:
+      allOf:
+        - $ref: '#/components/schemas/Plant'
+
+    Sex:
+      type: string
+      enum: [ male, female ]
+
+    Animal:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+        - type: object
+        - properties:
+            sex:
+              type: string
+              $ref: '#/components/schemas/Sex'
+            movementDirection:
+              type: object
+              $ref: '#/components/schemas/MovementDirection'
+            velocity:
+              type: integer
+
+    Herbivorial:
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+        - properties:
+            eatenPlants:
+              type: object
+              items:
+                type: array
+                $ref: '#/components/schemas/Plant'
+
+    Predator:
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+        - properties:
+            eatenAnimals:
+              type: object
+              items:
+                type: array
+                $ref: '#/components/schemas/Animal'
+
+    Wolf:
+      allOf:
+        - $ref: '#/components/schemas/Predator'
+          type: object
+    Ship:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+          type: object
+    Map:
+      type: object
+      properties:
+        maxX:
+          type: integer
+        maxY:
+          type: integer
+    Collision:
+      type: object
+      properties:
+        positionX:
+          type: integer
+        positionY:
+          type: integer
+        animals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Animal'
+
+    GameState:
+      type: object
+      properties:
+        map:
+          type: object
+          $ref: '#/components/schemas/Map'
+        grass:
+          type: array
+          items:
+            $ref: '#/components/schemas/Grass'
+        animals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Animal'
+        collisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collision'
+
+
+    Greeting:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Greetings:
+      type: array
+      maxItems: 100
+      items:
+        $ref: "#/components/schemas/Greeting"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

@@ -48,38 +48,12 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-
-//openApiGenerate {
-//    generatorName.set("spring")
-////	library.set("spring-boot")
-//    inputSpec.set("$rootDir/openapi/petstore.yaml")
-//    outputDir.set("$buildDir/generated/petstore")
-//    apiPackage.set("org.openapi.example.api")
-//    invokerPackage.set("org.openapi.example.invoker")
-//    modelPackage.set("org.openapi.example.model")
-//    generateApiDocumentation = false
-//    generateModelTests = false
-//    generateApiTests = false
-//    configOptions.set(
-//            mapOf(
-//                    "dateLibrary" to "java8",
-//                    "skipDefaultInterface" to "true",
-//                    "interfaceOnly" to "true",
-//                    "serializableModel" to "true",
-//                    "interfaceOnly" to "true",
-//                    "useTags" to "false",
-//                    "hideGenerationTimeStamp" to "true",
-//                    "openApiNullable" to "false",
-//                    "sourceFolder" to ""
-//            )
-//    )
-//    globalProperties.putAll(mapOf("generateSupportingFiles" to "false"))
-//}
 
 tasks.register("greetingsOpenApiGenerate", GenerateTask::class) {
     generatorName.set("spring")
@@ -109,35 +83,6 @@ tasks.register("greetingsOpenApiGenerate", GenerateTask::class) {
     //
     // "apis" to "", don't generate models
 }
-
-//val generateApi by tasks.registering(GenerateTask::class) {
-//    generatorName.set("spring")
-//    library.set("spring-boot")
-//    inputSpec.set("$rootDir/openapi/greetings.yaml")
-//    outputDir.set("$buildDir/generated/greetings")
-//    apiPackage.set("org.openapi.example.api")
-//    invokerPackage.set("org.openapi.example.invoker")
-//    modelPackage.set("org.openapi.example.model")
-//    generateApiDocumentation = false
-//    generateModelTests = false
-//    generateApiTests = false
-//    removeOperationIdPrefix = true
-//    configOptions.set(
-//            mapOf(
-//                    "dateLibrary" to "java8",
-//                    "skipDefaultInterface" to "true",
-//                    "interfaceOnly" to "true",
-//                    "serializableModel" to "true",
-//                    "useTags" to "false",
-//                    "hideGenerationTimeStamp" to "true",
-//                    "openApiNullable" to "false",
-//                    "sourceFolder" to "",
-//            )
-//    )
-//    globalProperties.putAll(mapOf("generateSupportingFiles" to "false"))
-//    //
-//    // "apis" to "", don't generate models
-//}
 
 fun configureGenerator(task: GenerateTask) {
     task.generateAliasAsModel.set(false)
@@ -186,9 +131,21 @@ val generatePetstoreApi by tasks.registering(GenerateTask::class) {
     invokerPackage.set("org.openapi.petstore.invoker")
 }
 
+val generateLifeGameApi by tasks.registering(GenerateTask::class) {
+    configureGenerator(this)
+    generatorName.set("spring")
+    library.set("spring-boot")
+    inputSpec.set("$rootDir/openapi/life.yaml")
+    outputDir.set("$buildDir/generated/life")
+    apiPackage.set("org.openapi.life.api")
+    modelPackage.set("org.openapi.life.model")
+    modelNameSuffix.set("Ui")
+    invokerPackage.set("org.openapi.life.invoker")
+}
+
 val compileJava by tasks.getting(JavaCompile::class) {
+    dependsOn(generateLifeGameApi)
     dependsOn(generateGreetingsApi)
-    dependsOn(generatePetstoreApi)
 }
 
 val compileKotlin: KotlinCompile by tasks

@@ -1,3 +1,3 @@
-rootProject.name = "draft"
+rootProject.name = "life"
 include("build")
 
