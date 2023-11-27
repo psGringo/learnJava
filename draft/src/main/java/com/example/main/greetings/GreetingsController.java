@@ -1,8 +1,8 @@
 package com.example.main.greetings;
 
 import lombok.AllArgsConstructor;
-import org.openapi.life.api.GreetingsApi;
-import org.openapi.life.model.GreetingUi;
+import org.openapi.greetings.api.GreetingsApi;
+import org.openapi.greetings.model.GreetingUI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,7 @@ public class GreetingsController implements GreetingsApi {
     private GreetingsService greetingsService;
 
     @Override
-    public ResponseEntity<GreetingUi> sayHello() {
+    public ResponseEntity<GreetingUI> sayHello() {
         return new ResponseEntity<>(greetingsService.getGreeting(), HttpStatus.OK);
     }
 }

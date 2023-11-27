@@ -1,4 +1,4 @@
-package com.example.main.life.state;
+package com.example.main.life.context;
 
 import com.example.main.life.Utils;
 import com.example.main.life.models.GameState;
@@ -44,18 +44,23 @@ public class AnimalsContext {
 
     private List<AnimalCollision> getAnimalsCollisions(List<Animal> animals) {
         List<AnimalCollision> collisions = new ArrayList<>();
-        animals.stream().filter(oneAnimal -> animals.stream().anyMatch(anotherAnimal -> {
-            boolean xEquality = oneAnimal.getPositionX().equals(anotherAnimal.getPositionX());
-            boolean yEquality = oneAnimal.getPositionY().equals(anotherAnimal.getPositionY());
-            boolean canHunt = canHunt(oneAnimal, anotherAnimal);
 
-            if (xEquality && yEquality && canHunt) {
-                var predator = getPredator(oneAnimal, anotherAnimal);
-                var herbivorial = getHerbivorial(oneAnimal, anotherAnimal);
-                collisions.add(new AnimalCollision(predator, herbivorial));
+        for (int i = 0; i < animals.size(); i++) {
+            for (int j = 0; j < animals.size(); j++) {
+                if (i > j) {
+                    var oneAnimal = animals.get(i);
+                    var anotherAnimal = animals.get(j);
+                    boolean xEquality = oneAnimal.getPositionX().equals(anotherAnimal.getPositionX());
+                    boolean yEquality = oneAnimal.getPositionY().equals(anotherAnimal.getPositionY());
+                    boolean canHunt = canHunt(oneAnimal, anotherAnimal);
+                    if (xEquality && yEquality && canHunt) {
+                        var predator = getPredator(oneAnimal, anotherAnimal);
+                        var herbivorial = getHerbivorial(oneAnimal, anotherAnimal);
+                        collisions.add(new AnimalCollision(predator, herbivorial));
+                    }
+                }
             }
-            return xEquality && yEquality && canHunt;
-        }));
+        }
 
         return collisions;
     }

@@ -12,9 +12,7 @@ export const useTranslationTyped = () => {
     return {t: myT, i18n};
 }
 
-export const isTypeIsNextState = (obj: TNextStateOrError): obj is NextState => {
-    return 'stateMachineResponse' in obj;
-}
+
 
 
 export const getButtonCaptions = () => {

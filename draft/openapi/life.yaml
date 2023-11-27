@@ -7,19 +7,19 @@ info:
 servers:
   - url: http://localhost:3000
 paths:
-  /greetings:
+  /life:
     get:
-      summary: sayHello
-      operationId: sayHello
+      summary: getGameState
+      operationId: getGameState
       tags:
-        - greetings
+        - lifeGame
       responses:
         '200':
-          description: sayingHello
+          description: life game state
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Greeting"
+                $ref: "#/components/schemas/GameState"
         default:
           description: unexpected error
           content:
@@ -120,35 +120,61 @@ components:
       allOf:
         - $ref: '#/components/schemas/Predator'
           type: object
-    Ship:
+    Sheep:
       allOf:
         - $ref: '#/components/schemas/GodParticle'
           type: object
-    Map:
+    GameMap:
       type: object
+      required:
+        - maxX
+        - maxY
       properties:
         maxX:
           type: integer
         maxY:
           type: integer
-    Collision:
+    Statistics:
       type: object
+      required:
+        - totalGodParticles
+        - totalAliveGrass
+        - totalAliveAnimals
+        - totalAlivePredators
+        - totalAliveHerbivorials
       properties:
-        positionX:
+        totalGodParticles:
           type: integer
-        positionY:
+        totalAliveGrass:
           type: integer
-        animals:
-          type: array
-          items:
-            $ref: '#/components/schemas/Animal'
+        totalAliveAnimals:
+          type: integer
+        totalAlivePredators:
+          type: integer
+        totalAliveHerbivorials:
+          type: integer
+    #    Collision:
+    #      type: object
+    #      properties:
+    #        positionX:
+    #          type: integer
+    #        positionY:
+    #          type: integer
+    #        animals:
+    #          type: array
+    #          items:
+    #            $ref: '#/components/schemas/Animal'
 
     GameState:
       type: object
+      required:
+        - gameMap
+        - grass
+        - animals
       properties:
-        map:
+        gameMap:
           type: object
-          $ref: '#/components/schemas/Map'
+          $ref: '#/components/schemas/GameMap'
         grass:
           type: array
           items:
@@ -157,24 +183,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Animal'
-        collisions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Collision'
+        statistics:
+          type: object
+          $ref: '#/components/schemas/Statistics'
+    #        collisions:
+    #          type: array
+    #          items:
+    #            $ref: '#/components/schemas/Collision'
 
-
-    Greeting:
-      type: object
-      required:
-        - message
-      properties:
-        message:
-          type: string
-    Greetings:
-      type: array
-      maxItems: 100
-      items:
-        $ref: "#/components/schemas/Greeting"
     Error:
       type: object
       required:

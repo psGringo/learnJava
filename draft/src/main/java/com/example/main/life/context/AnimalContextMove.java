@@ -1,4 +1,4 @@
-package com.example.main.life.state;
+package com.example.main.life.context;
 
 import com.example.main.life.models.Map;
 import com.example.main.life.models.animals.Animal;
@@ -28,10 +28,10 @@ public class AnimalContextMove {
 
     private void correctIfNeededDirection(Animal animal, Map map) {
 
-        boolean isNearTopBorder = animal.getPositionY() - 1 <= map.getTopBorder();
-        boolean isNearBottomBorder = animal.getPositionY() + 1 >= map.getBottomBorder();
-        boolean isNearLeftBorder = animal.getPositionX() - 1 <= map.getLeftBorder();
-        boolean isNearRightBorder = animal.getPositionX() + 1 >= map.getRightBorder();
+        boolean isNearTopBorder = animal.getPositionY() <= map.getTopBorder();
+        boolean isNearBottomBorder = animal.getPositionY() >= map.getBottomBorder();
+        boolean isNearLeftBorder = animal.getPositionX() <= map.getLeftBorder();
+        boolean isNearRightBorder = animal.getPositionX() >= map.getRightBorder();
 
         boolean isInTheTopLeftCorner = isNearTopBorder && isNearLeftBorder;
         boolean isInTheTopRightCorner = isNearTopBorder && isNearRightBorder;
@@ -113,7 +113,7 @@ public class AnimalContextMove {
         // TODO check possibleDirections.contains(currentAnimalDirection) works normally
         if (needChangeDirection) {
             Random random = new Random();
-            int nextDirectionIndex = random.nextInt(possibleDirections.size() - 1);
+            int nextDirectionIndex = random.nextInt(possibleDirections.size());
             org.openapi.life.model.MovementDirectionUi newDirection = possibleDirections.get(nextDirectionIndex);
             animal.setMovementDirection(newDirection);
         }
@@ -154,7 +154,7 @@ public class AnimalContextMove {
 
             int newPositionY = animal.getPositionY() - animal.getVelocity();
             newPositionY = correctIfNeededYPosition(newPositionY, map);
-            animal.setPositionX(newPositionY);
+            animal.setPositionY(newPositionY);
 
         } else if (direction == org.openapi.life.model.MovementDirectionUi.UPRIGHT) {
             int newPositionX = animal.getPositionX() + animal.getVelocity();
@@ -163,7 +163,7 @@ public class AnimalContextMove {
 
             int newPositionY = animal.getPositionY() - animal.getVelocity();
             newPositionY = correctIfNeededYPosition(newPositionY, map);
-            animal.setPositionX(newPositionY);
+            animal.setPositionY(newPositionY);
 
         } else if (direction == org.openapi.life.model.MovementDirectionUi.BOTTOMLEFT) {
 
@@ -173,7 +173,7 @@ public class AnimalContextMove {
 
             int newPositionY = animal.getPositionY() + animal.getVelocity();
             newPositionY = correctIfNeededYPosition(newPositionY, map);
-            animal.setPositionX(newPositionY);
+            animal.setPositionY(newPositionY);
 
         } else if (direction == org.openapi.life.model.MovementDirectionUi.BOTTOMRIGHT) {
             int newPositionX = animal.getPositionX() + animal.getVelocity();
@@ -182,7 +182,7 @@ public class AnimalContextMove {
 
             int newPositionY = animal.getPositionY() + animal.getVelocity();
             newPositionY = correctIfNeededYPosition(newPositionY, map);
-            animal.setPositionX(newPositionY);
+            animal.setPositionY(newPositionY);
         }
 
         correctIfNeededDirection(animal, map);

@@ -6,6 +6,13 @@ import {isTypeIsNextState, useTranslationTyped} from '@/Utils';
 
 export const GameResults: React.FC = () => {
 
+    const p = new Promise((resolve) => {resolve(123)});
+
+    const f = () => {};
+
+    p.then((r) => {})
+    
+    
     const {t} = useTranslationTyped();
 
     const {nextState} = useSelector<IRootState, IAppState>((s) => s.app);

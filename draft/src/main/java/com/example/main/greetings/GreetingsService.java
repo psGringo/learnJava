@@ -1,7 +1,7 @@
 package com.example.main.greetings;
 
-import org.openapi.life.model.GreetingUi;
+import org.openapi.greetings.model.GreetingUI;
 
 public interface GreetingsService {
-    GreetingUi getGreeting();
+    GreetingUI getGreeting();
 }

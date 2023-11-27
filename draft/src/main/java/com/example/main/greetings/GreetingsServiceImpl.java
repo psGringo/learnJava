@@ -1,6 +1,8 @@
 package com.example.main.greetings;
 
-import org.openapi.life.model.GreetingUi;
+import org.openapi.greetings.model.GreetingUI;
+
+
 import org.springframework.beans.factory.annotation.Value;
 
 //@Component, alternatievely to AppConfig
@@ -11,8 +13,8 @@ public class GreetingsServiceImpl implements GreetingsService {
     private String property;
 
     @Override
-    public GreetingUi getGreeting() {
+    public org.openapi.greetings.model.GreetingUI getGreeting() {
         String propValue = property;
-        return new GreetingUi().message("greeting from backend");
+        return new GreetingUI().message("greeting from backend");
     }
 }

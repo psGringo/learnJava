@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     java
@@ -7,10 +8,19 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     id("org.openapi.generator") version "5.3.1"
     kotlin("jvm") version "1.9.20-RC2"
+//    kotlin("kapt") version "1.4.32"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
+
+// https://stackoverflow.com/questions/39490624/how-to-debug-spring-application-with-gradle
+tasks {
+    val bootRun by getting(BootRun::class) {
+        jvmArgs=listOf("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=32323")
+    }
+}
+
 
 java {
     toolchain {
@@ -21,7 +31,7 @@ java {
 sourceSets {
     main {
         java {
-            srcDir("$buildDir/generated/")
+            srcDir("$buildDir/Generated/")
         }
     }
 }
@@ -33,6 +43,7 @@ java {
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
@@ -49,6 +60,18 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
+    implementation("org.apache.commons:commons-lang3:3.13.0")
+    // mapstruct
+    //implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    //annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    implementation("org.mapstruct:mapstruct:1.3.1.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.3.1.Final")
+    testAnnotationProcessor("org.mapstruct:mapstruct-processor:1.3.1.Final")
+    implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+}
+
+tasks.withType<JavaCompile>{
+
 }
 
 tasks.withType<Test> {
@@ -119,18 +142,6 @@ val generateGreetingsApi by tasks.registering(GenerateTask::class) {
     invokerPackage.set("org.openapi.greetings.invoker")
 }
 
-val generatePetstoreApi by tasks.registering(GenerateTask::class) {
-    configureGenerator(this)
-    generatorName.set("spring")
-    library.set("spring-boot")
-    inputSpec.set("$rootDir/openapi/petstore.yaml")
-    outputDir.set("$buildDir/generated/petstore")
-    apiPackage.set("org.openapi.petstore.api")
-    modelPackage.set("org.openapi.petstore.model")
-    modelNameSuffix.set("UI")
-    invokerPackage.set("org.openapi.petstore.invoker")
-}
-
 val generateLifeGameApi by tasks.registering(GenerateTask::class) {
     configureGenerator(this)
     generatorName.set("spring")
@@ -142,6 +153,8 @@ val generateLifeGameApi by tasks.registering(GenerateTask::class) {
     modelNameSuffix.set("Ui")
     invokerPackage.set("org.openapi.life.invoker")
 }
+
+
 
 val compileJava by tasks.getting(JavaCompile::class) {
     dependsOn(generateLifeGameApi)
