@@ -3,12 +3,12 @@ import {appReducer} from '@/Store/AppReducer';
 import {IRootState} from '@/Types/StoreModel';
 
 
-export const store
-createStore(
-    combineReducers<IRootState>({
-        app: appReducer
-    })
-);
+export const store =
+    createStore(
+        combineReducers<IRootState>({
+            app: appReducer
+        })
+    );
 
 
 

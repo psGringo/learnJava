@@ -9,7 +9,8 @@
     "prebuild": "npm run generate",
     "build": "cross-env NODE_ENV=production webpack --config configs/webpack.prod.ts",
     "build:dev": "cross-env NODE_ENV=development webpack --config configs/webpack.dev.ts",
-    "generate": "openapi --input ../openapi/greetings.yaml --output ./openapi-generated -c axios",
+    "generateGreetingsApi": "openapi --input ../openapi/greetings.yaml --output ./openapi-generated/greeting -c axios",
+    "generateLifeGameApi": "openapi --input ../openapi/life.yaml --output ./openapi-generated/lifegame -c axios",
     "serve": "webpack serve --config configs/webpack.dev.ts",
     "tsc": "npx tsc --skipLibCheck --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,8 +23,7 @@
     "stylelint:pre-commit": "stylelint \"**/*.less\" --fix --color --max-warnings=0",
     "prettier:pre-commit": "prettier --write \"src/**/*.{js,ts,tsx,less}\"",
     "prepare": "cd ../.. && husky install draft/ui/.husky"
-  }
-  ,
+  },
   "msw": {
     "workerDirectory": "out"
   },
@@ -37,6 +37,7 @@
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
+    "file-loader": "^6.2.0",
     "form-data": "^4.0.0",
     "husky": "^8.0.3",
     "i18next": "20.2.1",

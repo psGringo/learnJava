@@ -41,6 +41,9 @@
       ],
       "@api/*": [
         "./openapi"
+      ],
+      "@assets/*": [
+        "./src/Assets"
       ]
     },
     "allowSyntheticDefaultImports": true,

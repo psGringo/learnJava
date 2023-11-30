@@ -1,0 +1,204 @@
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: Swagger Life Game
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3000
+paths:
+  /life:
+    get:
+      summary: getGameState
+      operationId: getGameState
+      tags:
+        - lifeGame
+      responses:
+        '200':
+          description: life game state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GameState"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+
+    MovementDirection:
+      type: string
+      nullable: true
+      enum:
+        - up
+        - down
+        - left
+        - right
+        - null
+        - upRight
+        - upLeft
+        - bottomRight
+        - bottomLeft
+
+    GodParticle:
+      type: object
+      required:
+        - name
+        - health
+        - positionX
+        - positionY
+      properties:
+        name:
+          type: string
+        health:
+          type: integer
+          minimum: 0
+          maximum: 100
+        age:
+          type: integer
+          minimum: 0
+          maximum: 100
+        hungerSatisfaction:
+          type: integer
+          minimum: 0
+          maximum: 100
+        positionX:
+          type: integer
+        positionY:
+          type: integer
+    Plant:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+
+    Grass:
+      allOf:
+        - $ref: '#/components/schemas/Plant'
+
+    Sex:
+      type: string
+      enum: [ male, female ]
+
+    Animal:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+        - type: object
+        - properties:
+            sex:
+              type: string
+              $ref: '#/components/schemas/Sex'
+            movementDirection:
+              type: object
+              $ref: '#/components/schemas/MovementDirection'
+            velocity:
+              type: integer
+
+    Herbivorial:
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+        - properties:
+            eatenPlants:
+              type: object
+              items:
+                type: array
+                $ref: '#/components/schemas/Plant'
+
+    Predator:
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+        - properties:
+            eatenAnimals:
+              type: object
+              items:
+                type: array
+                $ref: '#/components/schemas/Animal'
+
+    Wolf:
+      allOf:
+        - $ref: '#/components/schemas/Predator'
+          type: object
+    Sheep:
+      allOf:
+        - $ref: '#/components/schemas/GodParticle'
+          type: object
+    GameMap:
+      type: object
+      required:
+        - maxX
+        - maxY
+      properties:
+        maxX:
+          type: integer
+        maxY:
+          type: integer
+    Statistics:
+      type: object
+      required:
+        - totalGodParticles
+        - totalAliveGrass
+        - totalAliveAnimals
+        - totalAlivePredators
+        - totalAliveHerbivorials
+      properties:
+        totalGodParticles:
+          type: integer
+        totalAliveGrass:
+          type: integer
+        totalAliveAnimals:
+          type: integer
+        totalAlivePredators:
+          type: integer
+        totalAliveHerbivorials:
+          type: integer
+    #    Collision:
+    #      type: object
+    #      properties:
+    #        positionX:
+    #          type: integer
+    #        positionY:
+    #          type: integer
+    #        animals:
+    #          type: array
+    #          items:
+    #            $ref: '#/components/schemas/Animal'
+
+    GameState:
+      type: object
+      required:
+        - gameMap
+        - grass
+        - animals
+      properties:
+        gameMap:
+          type: object
+          $ref: '#/components/schemas/GameMap'
+        grass:
+          type: array
+          items:
+            $ref: '#/components/schemas/Grass'
+        animals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Animal'
+        statistics:
+          type: object
+          $ref: '#/components/schemas/Statistics'
+    #        collisions:
+    #          type: array
+    #          items:
+    #            $ref: '#/components/schemas/Collision'
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
