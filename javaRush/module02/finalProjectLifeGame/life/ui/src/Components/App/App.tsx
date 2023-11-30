@@ -2,10 +2,13 @@ import {Button} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styles from './Styles.less'
+import {GameApiService} from '@/ApiService/GameApiService';
 import {GreetingsApiService} from '@/ApiService/GreetingsApiService';
-import {setAppState} from '@/Store/ActionCreators';
+import {Grid} from '@/Components/Grid/Grid';
+import {Statistics} from '@/Components/Statistics/Statistics';
+import {setGameState, setGreeting} from '@/Store/ActionCreators';
 import {IAppState, IRootState} from '@/Types/StoreModel';
-import {useTranslationTyped} from '@/Utils';
+import {isTypeIsGameState, useTranslationTyped} from '@/Utils';
 
 export const App: React.FC = () => {
 
@@ -19,9 +22,70 @@ export const App: React.FC = () => {
 
     useEffect(() => {
         GreetingsApiService.sayHello().then((greeting) => {
-            dispatch(setAppState(greeting));
-        })
+            dispatch(setGreeting(greeting));
+        });
     }, [dispatch])
+
+
+    useEffect(() => {
+
+        let isValid = true;
+
+        let intervalCall;
+
+        const TWO_SECONDS = 1500;
+
+        const getGameState = async () => {
+
+            const gameState = await GameApiService.getGameState();
+
+            if (isTypeIsGameState(gameState)) {
+                dispatch(setGameState(gameState));
+            }
+
+
+            // after await if the component unmounts, and this scope
+            // becomes stale, skip futher execution
+            // so the interval wont be started, and wont break in dev mode where useEffect runs twice
+            if (!isValid) {
+                return;
+            }
+
+            // Gets new information every 2 seconds
+            intervalCall = setInterval(async () => {
+                const gameState = await GameApiService.getGameState();
+
+                if (isTypeIsGameState(gameState)) {
+                    dispatch(setGameState(gameState));
+                }
+
+                // might want to check valid scope inside
+                // retrieveCurrencyConversionRateFunction
+                // by passing it a flag to skip execution on a unmounted component scope
+
+            }, TWO_SECONDS);
+
+
+            // eslint-disable-next-line max-len
+            // Have to wait until currencyConversionRateFunction 
+            // is loaded before the map function is called on it in the render view otherwise will have error
+            // setLoading(false);
+        }
+
+        getGameState();
+
+        return () => {
+
+            isValid = false
+
+            // if interval was not stared, dont clear it
+            if (intervalCall) {
+                clearInterval(intervalCall);
+            }
+        };
+
+    }, [dispatch]);
+
 
     const getLang = () => {
         return lang === 'ru' ? 'en' : 'ru';
@@ -36,7 +100,7 @@ export const App: React.FC = () => {
         <div className={styles.app}>
             <div className={styles.topPanel}>
                 <div className={styles.name}>
-                    123456
+                    {t('App.name')}
                 </div>
                 <div className={styles.button}>
                     <Button
@@ -52,5 +116,7 @@ export const App: React.FC = () => {
                     {greeting?.message || 'backend greeting expected...'}
                 </div>
             </div>
+            <Statistics/>
+            <Grid/>
         </div>)
 }

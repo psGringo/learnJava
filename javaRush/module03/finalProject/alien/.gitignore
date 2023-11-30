@@ -1,5 +1,5 @@
 ui/openapi-generated
-ui/node_modules
+/ui/node_modules
 ui/.idea
 ui/out
 
