@@ -1,9 +1,9 @@
 package messenger;
 
 import jakarta.annotation.PostConstruct;
-import messenger.postproxy.PostProxy;
+import messenger.postproxyContextRefreshed.PostProxy;
 import messenger.profiling.Profiling;
-import messenger.random.RandomCount;
+import messenger.randomBeanPostProcessor.RandomCount;
 import org.springframework.stereotype.Component;
 
 @Component("PhasesExample")

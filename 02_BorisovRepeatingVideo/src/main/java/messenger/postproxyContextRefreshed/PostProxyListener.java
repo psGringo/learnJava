@@ -1,4 +1,4 @@
-package messenger.postproxy;
+package messenger.postproxyContextRefreshed;
 
 import java.lang.reflect.Method;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,7 @@ public class PostProxyListener implements ApplicationListener<ContextRefreshedEv
                         if (method.isAnnotationPresent(PostProxy.class)) {
                             Object bean = applicationContext.getBean(beanDefinitionName);
                             Method postProxyMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
+                            System.out.println("this is fired on each context refresh");
                             System.out.printf("invoking method %s on context refreshed from post proxy%n", postProxyMethod.getName());
                             postProxyMethod.invoke(bean);
                         }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
@@ -23,6 +22,11 @@ public class DemoApplication {
     @Autowired
     @Qualifier("PhasesExample")
     private Messenger phasesExample;
+
+
+    @Autowired
+    @Qualifier("BeanFactoryPostProcessorExample")
+    private Messenger beanFactoryPostProcessor;
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -40,7 +44,9 @@ public class DemoApplication {
 
     @PostConstruct
     void init() {
-        phasesExample.sayHello();
+
+//        phasesExample.sayHello();
+        beanFactoryPostProcessor.sayHello();
     }
 
 }

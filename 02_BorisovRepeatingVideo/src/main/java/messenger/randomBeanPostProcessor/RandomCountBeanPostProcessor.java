@@ -1,4 +1,4 @@
-package messenger.random;
+package messenger.randomBeanPostProcessor;
 
 import java.util.Random;
 import org.springframework.beans.BeansException;

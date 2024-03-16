@@ -1,4 +1,4 @@
-package messenger.random;
+package messenger.randomBeanPostProcessor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
