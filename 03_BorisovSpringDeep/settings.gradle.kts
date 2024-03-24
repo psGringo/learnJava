@@ -1,3 +1,4 @@
 rootProject.name = "borisovSpringDeep"
-include("src:main")
-include("starter")
+//include("starter")
+include("app")
+include("anotherStarter")
