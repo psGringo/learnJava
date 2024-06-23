@@ -18,6 +18,16 @@ public class Main {
                 String name = resultSet.getString(2);
                 System.out.printf("ID: %d, Name: %s\n", id, name);
             }
+
+            jdbcMetaDataExample(resultSet);
+
+        }
+    }
+
+    private static void jdbcMetaDataExample(ResultSet resultSet) throws SQLException {
+        var metaData = resultSet.getMetaData();
+        for (int i = 1; i < metaData.getColumnCount(); i++) {
+            System.out.println(metaData.getColumnName(i));
         }
     }
 }
