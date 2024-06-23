@@ -12,6 +12,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource("myapplication.properties")
 //@Import(SomeInfraConfiguration.class)
+
 public class Config {
 
     @Value("${mymessage}")
