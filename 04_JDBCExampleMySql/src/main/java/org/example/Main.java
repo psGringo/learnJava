@@ -5,6 +5,26 @@ import java.sql.*;
 
 public class Main {
 
+    private void anotherMethod() {
+        try (
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/test",
+                        "root",
+                        "root"
+                )
+        ) {
+            Statement stm = conn.createStatement();
+            conn.setAutoCommit(false);
+            stm.execute("update employee set salary = salary + 2000 where name = 'Diego'");
+            stm.execute("update employee set salary = salary + 5000 where name = 'Amigo'");
+            conn.commit();
+            stm.close();
+        }
+        catch (Exception e) {
+
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         System.out.printf("Hello and welcome!");
 
@@ -12,10 +32,17 @@ public class Main {
                 "jdbc:mysql://localhost:3307", "root", "root"
         )) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from library.author");
+            ResultSet resultSet = statement.executeQuery("selectselect * from library.author");
+
             while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
+                int id = resultSet.getInt("id");
+                if (resultSet.wasNull()) {
+                    System.out.println("id is null");
+                }
+                String name = resultSet.getString("first_name");
+                if (resultSet.wasNull()) {
+                    System.out.println("name is null");
+                }
                 System.out.printf("ID: %d, Name: %s\n", id, name);
             }
 
