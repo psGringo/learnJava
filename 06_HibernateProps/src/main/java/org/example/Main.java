@@ -28,7 +28,7 @@ public class Main {
 
 
         try (Session session = sessionFactory.openSession()) {
-            List<AuthorEntity> authors = session.createQuery("from AuthorEntity").list();
+            List<AuthorEntity> authors = session.createQuery("from AuthorEntity", AuthorEntity.class).list();
             AuthorEntity authorEntity = authors.get(0);
             System.out.println(authorEntity.getFirstName());
 
